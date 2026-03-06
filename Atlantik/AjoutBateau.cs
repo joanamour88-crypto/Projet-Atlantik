@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Atlantik
 {
@@ -46,12 +47,66 @@ namespace Atlantik
 
                     txt = new TextBox();
                     txt.Location = new Point(125, i * 25);
-                    //txt.Tag = s.GetLettreCategorie() + ";" + s.GetNoType();
+                    txt.Tag = letcat;
                     txt.Width = 75;
                     GbxCapMax.Controls.Add(txt);
                     i = i + 1;
                 }
                 jeuEnregistrementslab.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                maCo.Close();
+            }
+        }
+
+        private void BtnAjBateau_Click(object sender, EventArgs e)
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+
+            try
+            {
+                maCo.Open();
+
+                MySqlCommand maCdeinsbateau;
+                string nombateau = Tbxnombateau.Text;
+                string requêteinsbateau = "INSERT INTO bateau(nom) VALUES (@nombateau)";
+                maCdeinsbateau = new MySqlCommand(requêteinsbateau, maCo);
+                maCdeinsbateau.Parameters.AddWithValue("@nombateau", nombateau);
+                int nbinsbateau = maCdeinsbateau.ExecuteNonQuery();
+
+                int nobateau = (int)maCdeinsbateau.LastInsertedId;
+               
+                foreach (Control c in GbxCapMax.Controls)
+                {
+                    if (c is TextBox tbx)
+                    {
+                        MySqlCommand maCde;
+                        TextBox txt = (TextBox)c;
+
+                        string tab;
+                        tab = (tbx.Tag).ToString();
+                        //tab.Split(';');
+
+                        string letcat = tab[0].ToString();
+                        int capamax = int.Parse(tbx.Text);
+
+                        string requête = "INSERT INTO contenir(lettrecategorie, nobateau, capacitemax) VALUES (@letcat, @nobateau, @capacitemax)";
+                        maCde = new MySqlCommand(requête, maCo);
+
+                        maCde.Parameters.AddWithValue("@letcat", letcat);
+                        maCde.Parameters.AddWithValue("@nobateau", nobateau);
+                        maCde.Parameters.AddWithValue("@capacitemax", capamax);
+
+                        int nb = maCde.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Nouveau bateau ajouter !");
             }
             catch (Exception ex)
             {

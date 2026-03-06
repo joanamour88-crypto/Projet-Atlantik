@@ -57,5 +57,11 @@ namespace Atlantik
             AjoutBateau ajoutbateau = new AjoutBateau();
             ajoutbateau.ShowDialog();
         }
+
+        private void unBateauToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ModifBateau modifbateau = new ModifBateau();
+            modifbateau.ShowDialog();
+        }
     }
 }

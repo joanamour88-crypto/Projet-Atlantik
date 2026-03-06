@@ -75,7 +75,7 @@ namespace Atlantik
                     int notype = Convert.ToInt32(jeuEnregistrementslab["notype"]);
                     string libelle = jeuEnregistrementslab["libelle"].ToString();
 
-                    TarifParCategorie s = new TarifParCategorie(letcat, notype, libelle);
+                    //TarifParCategorie s = new TarifParCategorie(letcat, notype, libelle);
 
                     lab = new Label();
                     //lab.Text = s.ToString();
@@ -85,7 +85,8 @@ namespace Atlantik
 
                     txt = new TextBox();
                     txt.Location = new Point(125, i * 25);
-                    txt.Tag = s.GetLettreCategorie() + ";" + s.GetNoType();
+                    //txt.Tag = s.GetLettreCategorie() + ";" + s.GetNoType();
+                    txt.Tag = letcat + ";" + notype;
                     txt.Width = 100;
                     GbxTarif.Controls.Add(txt);
                     i = i + 1;

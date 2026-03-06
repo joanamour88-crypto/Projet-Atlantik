@@ -161,7 +161,14 @@
     <Compile Include="AjoutTarifs.Designer.cs">
       <DependentUpon>AjoutTarifs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bateau.cs" />
     <Compile Include="Liaison.cs" />
+    <Compile Include="ModifBateau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifBateau.Designer.cs">
+      <DependentUpon>ModifBateau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Periode.cs" />
     <Compile Include="Port.cs" />
     <Compile Include="Program.cs" />
@@ -185,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AjoutTarifs.resx">
       <DependentUpon>AjoutTarifs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifBateau.resx">
+      <DependentUpon>ModifBateau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

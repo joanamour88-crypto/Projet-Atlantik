@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Tbxnombateau = new System.Windows.Forms.TextBox();
             this.GbxCapMax = new System.Windows.Forms.GroupBox();
             this.BtnAjBateau = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,39 +43,40 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nom bateau :";
             // 
-            // textBox1
+            // Tbxnombateau
             // 
-            this.textBox1.Location = new System.Drawing.Point(89, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.Tbxnombateau.Location = new System.Drawing.Point(89, 40);
+            this.Tbxnombateau.Name = "Tbxnombateau";
+            this.Tbxnombateau.Size = new System.Drawing.Size(100, 20);
+            this.Tbxnombateau.TabIndex = 1;
             // 
             // GbxCapMax
             // 
             this.GbxCapMax.Location = new System.Drawing.Point(224, 37);
             this.GbxCapMax.Name = "GbxCapMax";
-            this.GbxCapMax.Size = new System.Drawing.Size(200, 211);
+            this.GbxCapMax.Size = new System.Drawing.Size(227, 162);
             this.GbxCapMax.TabIndex = 2;
             this.GbxCapMax.TabStop = false;
             this.GbxCapMax.Text = "Capacité Maximales";
             // 
             // BtnAjBateau
             // 
-            this.BtnAjBateau.Location = new System.Drawing.Point(89, 225);
+            this.BtnAjBateau.Location = new System.Drawing.Point(89, 176);
             this.BtnAjBateau.Name = "BtnAjBateau";
             this.BtnAjBateau.Size = new System.Drawing.Size(100, 23);
             this.BtnAjBateau.TabIndex = 0;
             this.BtnAjBateau.Text = "Ajouter";
             this.BtnAjBateau.UseVisualStyleBackColor = true;
+            this.BtnAjBateau.Click += new System.EventHandler(this.BtnAjBateau_Click);
             // 
             // AjoutBateau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 260);
+            this.ClientSize = new System.Drawing.Size(463, 214);
             this.Controls.Add(this.BtnAjBateau);
             this.Controls.Add(this.GbxCapMax);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Tbxnombateau);
             this.Controls.Add(this.label1);
             this.Name = "AjoutBateau";
             this.Text = "AjoutBateau";
@@ -88,7 +89,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Tbxnombateau;
         private System.Windows.Forms.GroupBox GbxCapMax;
         private System.Windows.Forms.Button BtnAjBateau;
     }
