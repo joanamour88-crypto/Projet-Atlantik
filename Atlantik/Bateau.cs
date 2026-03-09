@@ -21,7 +21,7 @@ namespace Atlantik
 
         public override string ToString()
         {
-            return nobateau.ToString();
+            return nom;
         }
     }
 }

@@ -63,5 +63,11 @@ namespace Atlantik
             ModifBateau modifbateau = new ModifBateau();
             modifbateau.ShowDialog();
         }
+
+        private void uneTraverserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AjoutTraversee ajouttraversee = new AjoutTraversee();
+            ajouttraversee.ShowDialog();
+        }
     }
 }

@@ -161,6 +161,12 @@
     <Compile Include="AjoutTarifs.Designer.cs">
       <DependentUpon>AjoutTarifs.cs</DependentUpon>
     </Compile>
+    <Compile Include="AjoutTraversee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjoutTraversee.Designer.cs">
+      <DependentUpon>AjoutTraversee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bateau.cs" />
     <Compile Include="Liaison.cs" />
     <Compile Include="ModifBateau.cs">
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AjoutTarifs.resx">
       <DependentUpon>AjoutTarifs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjoutTraversee.resx">
+      <DependentUpon>AjoutTraversee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifBateau.resx">
       <DependentUpon>ModifBateau.cs</DependentUpon>

@@ -78,7 +78,7 @@ namespace Atlantik
                     string nombateau = jeuEnregistrementslab["nom"].ToString();
                     int nobateau = Convert.ToInt32(jeuEnregistrementslab["nobateau"]);
                     Bateau bat = new Bateau(nobateau, nombateau);
-                    Cbxnombateau.Items.Add(nombateau);
+                    Cbxnombateau.Items.Add(bat);
                 }
                 jeuEnregistrementslab.Close();
             }
@@ -94,6 +94,53 @@ namespace Atlantik
 
         private void Cbxnombateau_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+            Bateau b = ((Bateau)Cbxnombateau.SelectedItem);
+            int nobateau = b.GetNoBateau();
+
+            try
+            {
+                maCo.Open();
+
+                string requêtecapamax = "SELECT capacitemax, lettrecategorie from contenir where nobateau = @idbateau";
+
+                MySqlCommand maCdecapamax = new MySqlCommand(requêtecapamax, maCo);
+                maCdecapamax.Parameters.AddWithValue("@idbateau", nobateau);
+
+                MySqlDataReader jeuEnregistrementscapamax = maCdecapamax.ExecuteReader();
+
+                while (jeuEnregistrementscapamax.Read())
+                {
+                    string capamax = jeuEnregistrementscapamax["capacitemax"].ToString();
+                    string letcat = jeuEnregistrementscapamax["lettrecategorie"].ToString();
+
+                    foreach (Control c in GbxCapMax.Controls)
+                    {
+                        if (c is TextBox tbx)
+                        {
+                            if (tbx.Tag.ToString() == letcat)
+                            tbx.Text = capamax.ToString();
+                        }
+                    }
+                }
+                //jeuEnregistrementscapamax.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                maCo.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Bouton Modifier ////////////////////////////////////////////////////////////
+
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
@@ -101,35 +148,42 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                //int idBateau = ((Bateau)Cbxnombateau.SelectedItem).GetNoBateau();
+                MySqlCommand maCdeinsbateau;
+                //string nombateau = Cbxnombateau.Text;
+                //string requêteinsbateau = "INSERT INTO bateau(nom) VALUES (@nombateau)";
+                //maCdeinsbateau = new MySqlCommand(requêteinsbateau, maCo);
+                //maCdeinsbateau.Parameters.AddWithValue("@nombateau", nombateau);
+                //int nbinsbateau = maCdeinsbateau.ExecuteNonQuery();
 
-                //string requêtecapamax = "SELECT c.capacitemax from bateau b INNER JOIN contenir c on (b.nobateau = c.nobateau)";
-                //MySqlCommand maCdecapamax = new MySqlCommand(requêtecapamax, maCo);
-                //MySqlDataReader jeuEnregistrementscapamax = maCdecapamax.ExecuteReader();
-                //int capamax = int.Parse(jeuEnregistrementscapamax["capacitemax"]).ToString();
-
-                int idBateau = ((Bateau)Cbxnombateau.SelectedItem).GetNoBateau();
+                //int nobateau = (int)maCdeinsbateau.LastInsertedId;
+                Bateau b = ((Bateau)Cbxnombateau.SelectedItem);
+                int nobateau = b.GetNoBateau();
 
                 foreach (Control c in GbxCapMax.Controls)
                 {
                     if (c is TextBox tbx)
                     {
+                        MySqlCommand maCde;
                         TextBox txt = (TextBox)c;
 
-                        string tab = (tbx.Tag).ToString();
-                        //int idBateau = ((Bateau)Cbxnombateau.SelectedItem).GetNoBateau();
+                        string tab;
+                        tab = (tbx.Tag).ToString();
+                        //tab.Split(';');
 
-                        string requêtecapamax = "SELECT c.capacitemax from bateau b INNER JOIN contenir c on (b.nobateau = c.nobateau) where c.lettrecategorie = @tab AND c.nobateau = @idbateau";
-                        MySqlCommand maCdecapamax = new MySqlCommand(requêtecapamax, maCo);
-                        maCdecapamax.Parameters.AddWithValue("@tab", tab);
-                        maCdecapamax.Parameters.AddWithValue("@idbateau", idBateau);
-                        MySqlDataReader jeuEnregistrementscapamax = maCdecapamax.ExecuteReader();
-                        object capamax = jeuEnregistrementscapamax["c.capacitemax"].ToString();
+                        string letcat = tab[0].ToString();
+                        int capamax = int.Parse(tbx.Text);
 
-                        tbx.Text = capamax.ToString();
+                        string requête = "UPDATE contenir SET capacitemax = @capacitemax WHERE lettrecategorie=@letcat AND  nobateau = @nobateau";
+                        maCde = new MySqlCommand(requête, maCo);
+
+                        maCde.Parameters.AddWithValue("@letcat", letcat);
+                        maCde.Parameters.AddWithValue("@nobateau", nobateau);
+                        maCde.Parameters.AddWithValue("@capacitemax", capamax);
+
+                        int nb = maCde.ExecuteNonQuery();
                     }
                 }
-                //jeuEnregistrementscapamax.Close();
+                MessageBox.Show("Donnée du bateau Modifier !");
             }
             catch (Exception ex)
             {

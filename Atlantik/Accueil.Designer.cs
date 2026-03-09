@@ -123,6 +123,7 @@
             this.uneTraverserToolStripMenuItem.Name = "uneTraverserToolStripMenuItem";
             this.uneTraverserToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
             this.uneTraverserToolStripMenuItem.Text = "Une traverser";
+            this.uneTraverserToolStripMenuItem.Click += new System.EventHandler(this.uneTraverserToolStripMenuItem_Click);
             // 
             // modifierToolStripMenuItem
             // 
