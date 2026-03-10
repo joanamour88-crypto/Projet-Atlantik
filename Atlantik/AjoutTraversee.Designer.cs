@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btnajout = new System.Windows.Forms.Button();
             this.Cbxnombateau = new System.Windows.Forms.ComboBox();
             this.LblLiaison = new System.Windows.Forms.Label();
             this.Lbldatarrivee = new System.Windows.Forms.Label();
@@ -41,14 +41,16 @@
             this.Dtparrivee = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // button1
+            // Btnajout
             // 
-            this.button1.Location = new System.Drawing.Point(298, 299);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Btnajout.BackColor = System.Drawing.Color.NavajoWhite;
+            this.Btnajout.Location = new System.Drawing.Point(201, 299);
+            this.Btnajout.Name = "Btnajout";
+            this.Btnajout.Size = new System.Drawing.Size(297, 51);
+            this.Btnajout.TabIndex = 0;
+            this.Btnajout.Text = "Ajouter";
+            this.Btnajout.UseVisualStyleBackColor = false;
+            this.Btnajout.Click += new System.EventHandler(this.Btnajout_Click);
             // 
             // Cbxnombateau
             // 
@@ -126,6 +128,7 @@
             this.Dtpdepart.Name = "Dtpdepart";
             this.Dtpdepart.Size = new System.Drawing.Size(200, 20);
             this.Dtpdepart.TabIndex = 9;
+            this.Dtpdepart.ValueChanged += new System.EventHandler(this.Dtpdepart_ValueChanged);
             // 
             // Dtparrivee
             // 
@@ -138,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(548, 375);
             this.Controls.Add(this.Dtparrivee);
             this.Controls.Add(this.Dtpdepart);
             this.Controls.Add(this.Cbxliaison);
@@ -149,7 +152,7 @@
             this.Controls.Add(this.Lbldatarrivee);
             this.Controls.Add(this.LblLiaison);
             this.Controls.Add(this.Cbxnombateau);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btnajout);
             this.Name = "AjoutTraversee";
             this.Text = "AjoutTraversee";
             this.Load += new System.EventHandler(this.AjoutTraversee_Load);
@@ -160,7 +163,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btnajout;
         private System.Windows.Forms.ComboBox Cbxnombateau;
         private System.Windows.Forms.Label LblLiaison;
         private System.Windows.Forms.Label Lbldatarrivee;

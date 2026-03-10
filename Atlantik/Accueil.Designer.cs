@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.Titre = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,11 +51,12 @@
             // Titre
             // 
             this.Titre.AutoSize = true;
-            this.Titre.Location = new System.Drawing.Point(360, 35);
+            this.Titre.Location = new System.Drawing.Point(446, 51);
             this.Titre.Name = "Titre";
             this.Titre.Size = new System.Drawing.Size(42, 13);
             this.Titre.TabIndex = 0;
             this.Titre.Text = "Atlantik";
+            this.Titre.Click += new System.EventHandler(this.Titre_Click);
             // 
             // menuStrip1
             // 
@@ -65,7 +67,7 @@
             this.aProposToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(998, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,7 +124,7 @@
             // 
             this.uneTraverserToolStripMenuItem.Name = "uneTraverserToolStripMenuItem";
             this.uneTraverserToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
-            this.uneTraverserToolStripMenuItem.Text = "Une traverser";
+            this.uneTraverserToolStripMenuItem.Text = "Une traversée";
             this.uneTraverserToolStripMenuItem.Click += new System.EventHandler(this.uneTraverserToolStripMenuItem_Click);
             // 
             // modifierToolStripMenuItem
@@ -163,6 +165,7 @@
             this.lesTraverséesPourUneLiaisonEtUneDateDonnéeAvecPlacesRestantesParCatégorieToolStripMenuItem.Size = new System.Drawing.Size(524, 22);
             this.lesTraverséesPourUneLiaisonEtUneDateDonnéeAvecPlacesRestantesParCatégorieToolStripMenuItem.Text = "Les traversées pour une liaison et une date donnée avec places restantes par caté" +
     "gorie";
+            this.lesTraverséesPourUneLiaisonEtUneDateDonnéeAvecPlacesRestantesParCatégorieToolStripMenuItem.Click += new System.EventHandler(this.lesTraverséesPourUneLiaisonEtUneDateDonnéeAvecPlacesRestantesParCatégorieToolStripMenuItem_Click);
             // 
             // lesDétailsDuneRéservationPourUnClientToolStripMenuItem
             // 
@@ -180,7 +183,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(998, 482);
             this.Controls.Add(this.Titre);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

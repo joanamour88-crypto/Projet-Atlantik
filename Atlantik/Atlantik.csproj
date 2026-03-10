@@ -131,6 +131,12 @@
     <Compile Include="Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
+    <Compile Include="AfficheTraversee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AfficheTraversee.Designer.cs">
+      <DependentUpon>AfficheTraversee.cs</DependentUpon>
+    </Compile>
     <Compile Include="AjoutBateau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     <Compile Include="TarifParCategorie.cs" />
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AfficheTraversee.resx">
+      <DependentUpon>AfficheTraversee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AjoutBateau.resx">
       <DependentUpon>AjoutBateau.cs</DependentUpon>

@@ -69,5 +69,16 @@ namespace Atlantik
             AjoutTraversee ajouttraversee = new AjoutTraversee();
             ajouttraversee.ShowDialog();
         }
+
+        private void lesTraverséesPourUneLiaisonEtUneDateDonnéeAvecPlacesRestantesParCatégorieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AfficheTraversee affichetraversee = new AfficheTraversee();
+            affichetraversee.ShowDialog();
+        }
+
+        private void Titre_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

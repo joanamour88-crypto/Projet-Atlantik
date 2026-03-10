@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Atlantik
 {
@@ -114,8 +115,52 @@ namespace Atlantik
             {
                 maCo.Close();
             }
+        }
 
+        private void Btnajout_Click(object sender, EventArgs e)
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
+            try
+            {
+                maCo.Open();
+
+                MySqlCommand maCde;
+                Liaison recupnoliaison = (Liaison)Cbxliaison.SelectedItem;
+                Bateau recupnobateau = (Bateau)Cbxnombateau.SelectedItem;
+
+                int noliaison = recupnoliaison.GetNoLiaison();
+                int nobateau = recupnobateau.GetNoBateau();
+
+                DateTime datheurdepart = Dtpdepart.Value;
+                DateTime datheurarrivee = Dtparrivee.Value;
+
+                string requête = "INSERT INTO traversee(noliaison, nobateau, dateheuredepart, dateheurearrivee) VALUES (@noliaison, @nobateau, @datheudep, @datheuarr)";
+                maCde = new MySqlCommand(requête, maCo);
+
+                maCde.Parameters.AddWithValue("@noliaison", noliaison);
+                maCde.Parameters.AddWithValue("@nobateau", nobateau);
+                maCde.Parameters.AddWithValue("@datheudep", datheurdepart);
+                maCde.Parameters.AddWithValue("@datheuarr", datheurarrivee);
+
+                int nb = maCde.ExecuteNonQuery();
+
+                MessageBox.Show("Traversée ajouter !");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                maCo.Close();
+            }
+        }
+
+        private void Dtpdepart_ValueChanged(object sender, EventArgs e)
+        {
+            Dtparrivee.MinDate = Dtpdepart.Value;
         }
     }
 }
