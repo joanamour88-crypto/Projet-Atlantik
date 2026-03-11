@@ -1,14 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Atlantik
 {
@@ -17,6 +20,144 @@ namespace Atlantik
         public AfficheTraversee()
         {
             InitializeComponent();
+        }
+
+        private int GetQuantiteEnregistree(int notraversee, string lettrecategorie)
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+            maCo.Open();
+            try
+            {
+                string requête = "SELECT sum(quantitereservee) FROM reservation r INNER JOIN enregistrer e ON (e.noreservation = r.noreservation) WHERE r.notraversee = @notraversee and e.lettrecategorie = @lettrecategorie";
+                MySqlCommand maCde = new MySqlCommand(requête, maCo);
+
+                maCde.Parameters.AddWithValue("@notraversee ", notraversee);
+                maCde.Parameters.AddWithValue("@lettrecategorie", lettrecategorie);
+
+                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+
+                int quantitereservee = Convert.ToInt32(jeuEnregistrements["quantitereservee"]);
+
+                return quantitereservee;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                maCo.Close();
+            }
+
+        }
+
+        private int GetCapaciteMaximale(int notraversee, string lettrecategorie)
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+            maCo.Open();
+            try
+            {
+                string requête = "SELECT capacitemax FROM contenir c INNER JOIN traversee t ON (c.nobateau = t.nobateau) WHERE t.notraversee = @notraversee and c.lettrecategorie = @lettrecategorie";
+                MySqlCommand maCde = new MySqlCommand(requête, maCo);
+
+                maCde.Parameters.AddWithValue("@notraversee ", notraversee);
+                maCde.Parameters.AddWithValue("@lettrecategorie", lettrecategorie);
+
+                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+
+                int quantitereservee = Convert.ToInt32(jeuEnregistrements["capacitemax"]);
+
+                return quantitereservee;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                maCo.Close();
+            }
+        }
+
+        private List<Categories> GetLesCategories()
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+            maCo.Open();
+            try
+            {
+                List<Categories> LesCategories = new List<Categories>();
+                foreach (Categories c in LesCategories)
+                {
+                    string requete = "SELECT * FROM categorie";
+                    MySqlCommand maCde = new MySqlCommand(requete, maCo);
+                    MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+
+                    while (jeuEnregistrements != null)
+                    {
+                        string lettreCategorie = (string)jeuEnregistrements["lettrecategorie"];
+                        string libelle = (string)jeuEnregistrements["libelle"];
+                        Categories cat = new Categories(lettreCategorie, libelle);
+                        LesCategories.Add(cat);
+                    }
+                    jeuEnregistrements.Close();
+                }
+                return LesCategories;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                List<Categories> LesCategories = new List<Categories>();
+                return LesCategories;
+            }
+            finally
+            {
+                maCo.Close();
+            }
+        }
+
+        private List<Traversees> GetLesTraverseesBateaux(int noliaison, string datetraversee)
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+            maCo.Open();
+            try
+            {
+                List<Traversees> lestraversees = new List<Traversees>();
+                foreach (Traversees t in lestraversees)
+                {
+                    string requete = "Select notraversee, nom, dateheuredepart from traversee t inner join bateau b on (t.nobateau = b.nobateau) where noliaison = @noliaison and dateheuredepart = @dateheuredepart;";
+                    MySqlCommand maCde = new MySqlCommand(requete, maCo);
+                    maCde.Parameters.AddWithValue("@noliaison", noliaison);
+                    maCde.Parameters.AddWithValue("@dateheuredepart", datetraversee);
+                    MySqlDataReader jeuEnregistrements;
+                    jeuEnregistrements = maCde.ExecuteReader();
+                    while (jeuEnregistrements.Read())
+                    {
+                        int notraverse = (int)jeuEnregistrements["notraversee"];
+                        string nom = (string)jeuEnregistrements["nom"];
+                        string dateheuredepart = (string)jeuEnregistrements["dateheuredepart"];
+                        Traversees trav = new Traversees(notraverse, nom, dateheuredepart);
+                        lestraversees.Add(trav);
+                    }
+                    jeuEnregistrements.Close();
+                }
+                return lestraversees;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                List<Traversees> lestraversees = new List<Traversees>();
+                return lestraversees;
+            }
+            finally
+            {
+                maCo.Close();
+            }
         }
 
         private void AfficheTraversee_Load(object sender, EventArgs e)

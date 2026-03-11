@@ -174,6 +174,7 @@
       <DependentUpon>AjoutTraversee.cs</DependentUpon>
     </Compile>
     <Compile Include="Bateau.cs" />
+    <Compile Include="Categories.cs" />
     <Compile Include="Liaison.cs" />
     <Compile Include="ModifBateau.cs">
       <SubType>Form</SubType>
@@ -187,6 +188,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Secteur.cs" />
     <Compile Include="TarifParCategorie.cs" />
+    <Compile Include="Traversees.cs" />
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
