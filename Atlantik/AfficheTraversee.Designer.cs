@@ -31,7 +31,7 @@
             this.Cbxliaison = new System.Windows.Forms.ComboBox();
             this.Btnafftraverse = new System.Windows.Forms.Button();
             this.Lstsect = new System.Windows.Forms.ListBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.Dtpdate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LvTraversee = new System.Windows.Forms.ListView();
@@ -67,12 +67,16 @@
             this.Lstsect.TabIndex = 2;
             this.Lstsect.SelectedIndexChanged += new System.EventHandler(this.Lstsect_SelectedIndexChanged);
             // 
-            // dateTimePicker1
+            // Dtpdate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(474, 60);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.Dtpdate.CustomFormat = "yyyy-MM-dd";
+            this.Dtpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.Dtpdate.Location = new System.Drawing.Point(474, 60);
+            this.Dtpdate.MinDate = new System.DateTime(1834, 7, 24, 0, 0, 0, 0);
+            this.Dtpdate.Name = "Dtpdate";
+            this.Dtpdate.Size = new System.Drawing.Size(97, 20);
+            this.Dtpdate.TabIndex = 3;
+            this.Dtpdate.Value = new System.DateTime(2021, 7, 10, 0, 0, 0, 0);
             // 
             // label1
             // 
@@ -140,7 +144,7 @@
             this.Controls.Add(this.LvTraversee);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.Dtpdate);
             this.Controls.Add(this.Lstsect);
             this.Controls.Add(this.Btnafftraverse);
             this.Controls.Add(this.Cbxliaison);
@@ -157,7 +161,7 @@
         private System.Windows.Forms.ComboBox Cbxliaison;
         private System.Windows.Forms.Button Btnafftraverse;
         private System.Windows.Forms.ListBox Lstsect;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker Dtpdate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView LvTraversee;

@@ -148,7 +148,7 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                MySqlCommand maCdeinsbateau;
+                //MySqlCommand maCdeinsbateau;
                 //string nombateau = Cbxnombateau.Text;
                 //string requêteinsbateau = "INSERT INTO bateau(nom) VALUES (@nombateau)";
                 //maCdeinsbateau = new MySqlCommand(requêteinsbateau, maCo);

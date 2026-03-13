@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,16 +6,18 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Atlantik
 {
     public partial class AfficheTraversee : Form
     {
+
+
         public AfficheTraversee()
         {
             InitializeComponent();
@@ -32,12 +33,13 @@ namespace Atlantik
                 string requête = "SELECT sum(quantitereservee) FROM reservation r INNER JOIN enregistrer e ON (e.noreservation = r.noreservation) WHERE r.notraversee = @notraversee and e.lettrecategorie = @lettrecategorie";
                 MySqlCommand maCde = new MySqlCommand(requête, maCo);
 
-                maCde.Parameters.AddWithValue("@notraversee ", notraversee);
+                maCde.Parameters.AddWithValue("@notraversee", notraversee);
                 maCde.Parameters.AddWithValue("@lettrecategorie", lettrecategorie);
 
                 MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+                jeuEnregistrements.Read();
 
-                int quantitereservee = Convert.ToInt32(jeuEnregistrements["quantitereservee"]);
+                int quantitereservee = Convert.ToInt32(jeuEnregistrements["sum(quantitereservee)"]);
 
                 return quantitereservee;
             }
@@ -62,13 +64,13 @@ namespace Atlantik
             {
                 string requête = "SELECT capacitemax FROM contenir c INNER JOIN traversee t ON (c.nobateau = t.nobateau) WHERE t.notraversee = @notraversee and c.lettrecategorie = @lettrecategorie";
                 MySqlCommand maCde = new MySqlCommand(requête, maCo);
-
-                maCde.Parameters.AddWithValue("@notraversee ", notraversee);
+                maCde.Parameters.AddWithValue("@notraversee", notraversee);
                 maCde.Parameters.AddWithValue("@lettrecategorie", lettrecategorie);
-
                 MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
 
-                int quantitereservee = Convert.ToInt32(jeuEnregistrements["capacitemax"]);
+                jeuEnregistrements.Read();
+
+                int quantitereservee = Convert.ToInt32(jeuEnregistrements["capacitemax"].ToString());
 
                 return quantitereservee;
             }
@@ -83,6 +85,7 @@ namespace Atlantik
             }
         }
 
+/*
         private List<Categories> GetLesCategories()
         {
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
@@ -119,7 +122,8 @@ namespace Atlantik
                 maCo.Close();
             }
         }
-
+*/
+/*
         private List<Traversees> GetLesTraverseesBateaux(int noliaison, string datetraversee)
         {
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
@@ -159,11 +163,13 @@ namespace Atlantik
                 maCo.Close();
             }
         }
-
+*/
         private void AfficheTraversee_Load(object sender, EventArgs e)
         {
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+
+                     
 
             try
             {
@@ -177,6 +183,8 @@ namespace Atlantik
 
                 while (jeuEnregistrementssect.Read())
                 {
+                    //MessageBox.Show("ici c'est ok 1 !");
+
                     int idsect = Convert.ToInt32(jeuEnregistrementssect["nosecteur"]);
                     string nomsect = jeuEnregistrementssect["nom"].ToString();
 
@@ -194,17 +202,10 @@ namespace Atlantik
             {
                 maCo.Close();
             }
-
-            LvTraversee.View = View.Details;
-            LvTraversee.GridLines = true;
-            LvTraversee.FullRowSelect = true;
-
-            LvTraversee.Columns.Add("N°", 50);
-            LvTraversee.Columns.Add("Heure", 70);
-            LvTraversee.Columns.Add("Bateau", 70);
-            LvTraversee.Columns.Add("A" + "\n" + " Passager", 100);
-            LvTraversee.Columns.Add("B" + "\n" + " Véh.inf.2m", 100);
-            LvTraversee.Columns.Add("C Véh.sup.2m", 100);
+            
+            
+            
+     
         }
 
         private void Lstsect_SelectedIndexChanged(object sender, EventArgs e)
@@ -217,13 +218,15 @@ namespace Atlantik
                 maCo.Open();
 
                 int idSecteur = ((Secteur)Lstsect.SelectedItem).GetNoSecteur();
-                string requêteliai = "SELECT noliaison, p.NOM, po.NOM as \"pNOM\" FROM liaison l INNER JOIN port p ON (l.NOPORT_DEPART = p.NOPORT) INNER JOIN port po ON (l.NOPORT_ARRIVEE = po.NOPORT) WHERE nosecteur = @idsect ";
+                string requêteliai = "SELECT noliaison, p.NOM, po.NOM as pNOM FROM liaison l INNER JOIN port p ON (l.NOPORT_DEPART = p.NOPORT) INNER JOIN port po ON (l.NOPORT_ARRIVEE = po.NOPORT) WHERE nosecteur = @idsect ";
                 MySqlCommand maCdeliai = new MySqlCommand(requêteliai, maCo);
                 maCdeliai.Parameters.AddWithValue("@idsect", idSecteur);
                 MySqlDataReader jeuEnregistrementsliai = maCdeliai.ExecuteReader();
                 Cbxliaison.Items.Clear();
                 while (jeuEnregistrementsliai.Read())
                 {
+                    //MessageBox.Show("ici c'est ok 2 !");
+
                     int noliaison = Convert.ToInt32(jeuEnregistrementsliai["noliaison"]);
                     string nomportdep = jeuEnregistrementsliai["NOM"].ToString();
                     string nomportarr = jeuEnregistrementsliai["pNOM"].ToString();
@@ -246,27 +249,134 @@ namespace Atlantik
         {
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+            /////// récupération de NoLiaison ///////////////////////////
+            Liaison recupnoliaison = (Liaison)Cbxliaison.SelectedItem;
+            int noliaison = recupnoliaison.GetNoLiaison();
+            /////// récupération de la date /////////////////////////////
+            string date = (Dtpdate.Text).ToString();
+            date = ("%" +  date + "%");
 
+            List<Categories> LesCategories = new List<Categories>();
+            List<LettreCategorie> LetCat = new List<LettreCategorie>();
+            List<Traversees> lestraversees = new List<Traversees>();
+
+            LvTraversee.Items.Clear();
+            LvTraversee.Columns.Clear();
+
+            LvTraversee.View = View.Details;
+            LvTraversee.GridLines = true;
+            LvTraversee.FullRowSelect = true;
+
+            LvTraversee.Columns.Add("N°", 50);
+            LvTraversee.Columns.Add("Heure", 70);
+            LvTraversee.Columns.Add("Bateau", 70);
+
+
+            ///////////////// categorie ///////////////////////
+
+            maCo.Open();
+            try
+            {
+                string requete = "SELECT * FROM categorie";
+                MySqlCommand maCde = new MySqlCommand(requete, maCo);
+                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+                
+
+                while (jeuEnregistrements.Read())
+                {
+                    //MessageBox.Show("ici c'est ok 3 !");
+                    string lettreCategorie = (string)jeuEnregistrements["lettrecategorie"];
+                    string libelle = (string)jeuEnregistrements["libelle"];
+                    Categories cat = new Categories(lettreCategorie,libelle);
+                    LettreCategorie letcat = new LettreCategorie(lettreCategorie);
+                    LesCategories.Add(cat);
+                    LetCat.Add(letcat);
+                }
+                jeuEnregistrements.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                maCo.Close();
+            }
+
+            ///// Ajout dynamiquement des lettres catégories et des libelles /////////////
+
+            foreach (Categories liste in LesCategories)
+            {
+                LvTraversee.Columns.Add(liste.ToString(), 100);
+            }
+
+            ///////////////// traversee /////////////////////// 
+            maCo.Open();
+            try
+            {
+
+                string requete = "Select notraversee, nom, dateheuredepart from traversee t inner join bateau b on (t.nobateau = b.nobateau) where noliaison = @noliaison and dateheuredepart like @heure";
+                MySqlCommand maCde = new MySqlCommand(requete, maCo);
+                maCde.Parameters.AddWithValue("@noliaison", noliaison);
+                maCde.Parameters.AddWithValue("@heure", date);
+                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+                while (jeuEnregistrements.Read())
+                {
+                    //MessageBox.Show("ici c'est ok 4 !");
+
+                    int notraverse = (int)jeuEnregistrements["notraversee"];
+                    string nom = (string)jeuEnregistrements["nom"];
+                    string dateheuredepart = (jeuEnregistrements["dateheuredepart"]).ToString();
+                    Traversees trav = new Traversees(notraverse, nom, dateheuredepart);
+                    lestraversees.Add(trav);
+                }
+                jeuEnregistrements.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                maCo.Close();
+            }
+
+            ///////////////// resultat ///////////////////////
             try
             {
                 maCo.Open();
 
-                Liaison recupnoliaison = (Liaison)Cbxliaison.SelectedItem;
-                int noliaison = recupnoliaison.GetNoLiaison();
+                string requête = "SELECT notraversee, b.nom as NOM, DATE_FORMAT(DATEHEUREDEPART, '%H:%i') as HEURE FROM traversee t INNER JOIN contenir c ON(t.nobateau = c.nobateau) INNER JOIN bateau b ON(t.nobateau = b.nobateau) WHERE noliaison = @noliaison and t.dateheuredepart like @date";
+                MySqlCommand maCde = new MySqlCommand(requête, maCo);
 
-                MySqlCommand maCde;
-                string requête = "SELECT notraversee FROM traversee WHERE noliaison = @noliaison";
-                maCde = new MySqlCommand(requête, maCo);
                 maCde.Parameters.AddWithValue("@noliaison", noliaison);
+                maCde.Parameters.AddWithValue("@date", date);
 
-                MySqlDataReader jeuEnregistrementslab = maCde.ExecuteReader();
+                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
 
                 var TabItem = new string[6];
-                ListViewItem unItem;
-
-                while (jeuEnregistrementslab.Read())
+                while (jeuEnregistrements.Read())
                 {
-                    TabItem[0] = jeuEnregistrementslab["notraversee"].ToString();
+                    // MessageBox.Show("ici c'est ok 5");
+                    int notrav = Convert.ToInt32(jeuEnregistrements["notraversee"]);
+                    // string letcat = jeuEnregistrements["c.lettrecategorie"].ToString();
+
+                    foreach (Traversees liste in lestraversees)
+                    {
+                        TabItem[0] = jeuEnregistrements["notraversee"].ToString();
+                        TabItem[1] = jeuEnregistrements["HEURE"].ToString();
+                        TabItem[2] = jeuEnregistrements["NOM"].ToString();
+                        int compteur = 3;
+                        foreach (LettreCategorie lstcate in LetCat)
+                        {
+                            TabItem[compteur] = (GetCapaciteMaximale(notrav, lstcate.ToString()) - GetQuantiteEnregistree(notrav, lstcate.ToString())).ToString();
+                            compteur++;
+                        }
+                        LvTraversee.Items.Add(new ListViewItem(TabItem));
+                    }
+                    //LvTraversee.Items.Add(new ListViewItem(TabItem));
                 }
             }
             catch (Exception ex)

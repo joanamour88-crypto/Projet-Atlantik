@@ -6,25 +6,18 @@ using System.Threading.Tasks;
 
 namespace Atlantik
 {
-    internal class Categories
+    internal class LettreCategorie
     {
         private string lettrecategorie;
-        private string libelle;
 
-        public Categories(string lettrecategorie, string libelle)
+        public LettreCategorie(string lettrecategorie)
         {
             this.lettrecategorie = lettrecategorie;
-            this.libelle = libelle;
-        }
-
-        public string getLettreCategorie()
-        {
-            return lettrecategorie;
         }
 
         public override string ToString()
         {
-            return lettrecategorie + "-" + libelle;
+            return lettrecategorie;
         }
     }
 }
