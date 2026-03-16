@@ -69,11 +69,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(391, 148);
+            this.label4.Location = new System.Drawing.Point(391, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Distance :";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // CbxDepart
             // 
@@ -99,6 +100,7 @@
             this.TbxDist.Name = "TbxDist";
             this.TbxDist.Size = new System.Drawing.Size(121, 20);
             this.TbxDist.TabIndex = 7;
+            this.TbxDist.Validating += new System.ComponentModel.CancelEventHandler(this.TbxDist_Validating);
             // 
             // LstSect
             // 
@@ -111,9 +113,9 @@
             // 
             // BtnAjout
             // 
-            this.BtnAjout.Location = new System.Drawing.Point(462, 210);
+            this.BtnAjout.Location = new System.Drawing.Point(452, 211);
             this.BtnAjout.Name = "BtnAjout";
-            this.BtnAjout.Size = new System.Drawing.Size(75, 23);
+            this.BtnAjout.Size = new System.Drawing.Size(121, 23);
             this.BtnAjout.TabIndex = 9;
             this.BtnAjout.Text = "Ajouter";
             this.BtnAjout.UseVisualStyleBackColor = true;

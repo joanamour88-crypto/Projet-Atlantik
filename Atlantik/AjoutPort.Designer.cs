@@ -35,7 +35,7 @@
             // 
             // BtnAjoutPort
             // 
-            this.BtnAjoutPort.Location = new System.Drawing.Point(141, 108);
+            this.BtnAjoutPort.Location = new System.Drawing.Point(88, 71);
             this.BtnAjoutPort.Name = "BtnAjoutPort";
             this.BtnAjoutPort.Size = new System.Drawing.Size(75, 23);
             this.BtnAjoutPort.TabIndex = 0;
@@ -46,7 +46,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 85);
+            this.label1.Location = new System.Drawing.Point(12, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 1;
@@ -54,21 +54,23 @@
             // 
             // TbxAjoutPort
             // 
-            this.TbxAjoutPort.Location = new System.Drawing.Point(128, 82);
+            this.TbxAjoutPort.Location = new System.Drawing.Point(74, 36);
             this.TbxAjoutPort.Name = "TbxAjoutPort";
             this.TbxAjoutPort.Size = new System.Drawing.Size(100, 20);
             this.TbxAjoutPort.TabIndex = 2;
+            this.TbxAjoutPort.Validating += new System.ComponentModel.CancelEventHandler(this.TbxAjoutPort_Validating);
             // 
             // AjoutPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 204);
+            this.ClientSize = new System.Drawing.Size(238, 168);
             this.Controls.Add(this.TbxAjoutPort);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnAjoutPort);
             this.Name = "AjoutPort";
             this.Text = "AjoutPort";
+            this.Load += new System.EventHandler(this.AjoutPort_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

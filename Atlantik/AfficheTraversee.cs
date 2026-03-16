@@ -39,9 +39,15 @@ namespace Atlantik
                 MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
                 jeuEnregistrements.Read();
 
-                int quantitereservee = Convert.ToInt32(jeuEnregistrements["sum(quantitereservee)"]);
-
-                return quantitereservee;
+                if (jeuEnregistrements["sum(quantitereservee)"] == DBNull.Value)
+                {
+                    return 0;
+                }
+                else
+                {
+                    int quantitereservee = Convert.ToInt32(jeuEnregistrements["sum(quantitereservee)"]);
+                    return quantitereservee;
+                }
             }
             catch (Exception ex)
             {
@@ -168,9 +174,6 @@ namespace Atlantik
         {
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
-
-                     
-
             try
             {
                 maCo.Open();
@@ -348,7 +351,7 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                string requête = "SELECT notraversee, b.nom as NOM, DATE_FORMAT(DATEHEUREDEPART, '%H:%i') as HEURE FROM traversee t INNER JOIN contenir c ON(t.nobateau = c.nobateau) INNER JOIN bateau b ON(t.nobateau = b.nobateau) WHERE noliaison = @noliaison and t.dateheuredepart like @date";
+                string requête = "SELECT notraversee, b.nom as NOM, DATE_FORMAT(DATEHEUREDEPART, '%H:%i') as HEURE FROM traversee t INNER JOIN bateau b ON(t.nobateau = b.nobateau) WHERE noliaison = @noliaison and t.dateheuredepart like @date";
                 MySqlCommand maCde = new MySqlCommand(requête, maCo);
 
                 maCde.Parameters.AddWithValue("@noliaison", noliaison);
@@ -357,12 +360,11 @@ namespace Atlantik
                 MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
 
                 var TabItem = new string[6];
+                //int notrav = Convert.ToInt32(jeuEnregistrements["notraversee"]);
                 while (jeuEnregistrements.Read())
                 {
-                    // MessageBox.Show("ici c'est ok 5");
                     int notrav = Convert.ToInt32(jeuEnregistrements["notraversee"]);
-                    // string letcat = jeuEnregistrements["c.lettrecategorie"].ToString();
-
+                    //string letcat = jeuEnregistrements["c.lettrecategorie"].ToString();
                     foreach (Traversees liste in lestraversees)
                     {
                         TabItem[0] = jeuEnregistrements["notraversee"].ToString();
@@ -374,9 +376,9 @@ namespace Atlantik
                             TabItem[compteur] = (GetCapaciteMaximale(notrav, lstcate.ToString()) - GetQuantiteEnregistree(notrav, lstcate.ToString())).ToString();
                             compteur++;
                         }
-                        LvTraversee.Items.Add(new ListViewItem(TabItem));
+                        break;
                     }
-                    //LvTraversee.Items.Add(new ListViewItem(TabItem));
+                    LvTraversee.Items.Add(new ListViewItem(TabItem));
                 }
             }
             catch (Exception ex)

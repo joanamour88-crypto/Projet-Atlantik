@@ -80,5 +80,17 @@ namespace Atlantik
         {
 
         }
+
+        private void lesDétailsDuneRéservationPourUnClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AfficheDetailsReservation Affichedetailsreservation = new AfficheDetailsReservation();
+            Affichedetailsreservation.ShowDialog();
+        }
+
+        private void lesParamètresDuSiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModifParametre modifparametre = new ModifParametre();
+            modifparametre.ShowDialog();
+        }
     }
 }

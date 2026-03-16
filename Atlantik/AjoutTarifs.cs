@@ -7,9 +7,9 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Atlantik
 {
@@ -75,19 +75,17 @@ namespace Atlantik
                     int notype = Convert.ToInt32(jeuEnregistrementslab["notype"]);
                     string libelle = jeuEnregistrementslab["libelle"].ToString();
 
-                    //TarifParCategorie s = new TarifParCategorie(letcat, notype, libelle);
-
                     lab = new Label();
-                    //lab.Text = s.ToString();
                     lab.Text = letcat + notype.ToString() + "-" + libelle;
                     lab.Location = new Point(5, i * 25);
                     GbxTarif.Controls.Add(lab);
 
                     txt = new TextBox();
+
                     txt.Location = new Point(125, i * 25);
-                    //txt.Tag = s.GetLettreCategorie() + ";" + s.GetNoType();
                     txt.Tag = letcat + ";" + notype;
                     txt.Width = 100;
+                    txt.TextChanged += tbxCategorie_TextChanged;
                     GbxTarif.Controls.Add(txt);
                     i = i + 1;
                 }
@@ -134,7 +132,7 @@ namespace Atlantik
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            
+
         }
 
         private void LstsectAjTar_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,45 +175,52 @@ namespace Atlantik
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
+            maCo.Open();
+
             try
             {
-
-                maCo.Open();
-                foreach(Control c in GbxTarif.Controls)
+                if(Cbxpériode.SelectedItem == null || Cbxlaision.SelectedItem == null || LstsectAjTar.SelectedItems == null)
                 {
-                    if (c is TextBox tbx)
-                    {
-                        MySqlCommand maCde;
-                        TextBox txt = (TextBox)c;
-
-                        string tab;
-                        tab = (tbx.Tag).ToString();
-                        tab.Split(';');
-
-                        Periode recupnoperiode = (Periode)Cbxpériode.SelectedItem;
-
-                        string letcat = tab[0].ToString();
-                        int notype = int.Parse(tab[2].ToString());
-                        double tarif = int.Parse(tbx.Text);
-
-                        Liaison recupnoliaison = (Liaison)Cbxlaision.SelectedItem; ;
-
-                        int noperiode = recupnoperiode.GetNoPeriode();
-                        int noliaison = recupnoliaison.GetNoLiaison();
-
-                        string requête = "INSERT INTO tarifer(noperiode, lettrecategorie, notype, noliaison, tarif) VALUES (@noperiode, @letcat, @notype, @noliaison, @tarif)";
-                        maCde = new MySqlCommand(requête, maCo);
-
-                        maCde.Parameters.AddWithValue("@noperiode", noperiode);
-                        maCde.Parameters.AddWithValue("@letcat", letcat);
-                        maCde.Parameters.AddWithValue("@notype", notype);
-                        maCde.Parameters.AddWithValue("@noliaison", noliaison);
-                        maCde.Parameters.AddWithValue("@tarif", tarif);
-
-                        int nb = maCde.ExecuteNonQuery();
-                    }
+                    MessageBox.Show("Veuillez sélectionner une période et une liaison !");
                 }
-                MessageBox.Show("Nouveau Tarif ajouter !");
+                else
+                {
+                    foreach (Control c in GbxTarif.Controls)
+                    {
+                        if (c is TextBox tbx)
+                        {
+                            MySqlCommand maCde;
+                            TextBox txt = (TextBox)c;
+
+                            string tab;
+                            tab = (tbx.Tag).ToString();
+                            tab.Split(';');
+
+                            Periode recupnoperiode = (Periode)Cbxpériode.SelectedItem;
+
+                            string letcat = tab[0].ToString();
+                            int notype = int.Parse(tab[2].ToString());
+                            double tarif = int.Parse(tbx.Text);
+
+                            Liaison recupnoliaison = (Liaison)Cbxlaision.SelectedItem; ;
+
+                            int noperiode = recupnoperiode.GetNoPeriode();
+                            int noliaison = recupnoliaison.GetNoLiaison();
+
+                            string requête = "INSERT INTO tarifer(noperiode, lettrecategorie, notype, noliaison, tarif) VALUES (@noperiode, @letcat, @notype, @noliaison, @tarif)";
+                            maCde = new MySqlCommand(requête, maCo);
+
+                            maCde.Parameters.AddWithValue("@noperiode", noperiode);
+                            maCde.Parameters.AddWithValue("@letcat", letcat);
+                            maCde.Parameters.AddWithValue("@notype", notype);
+                            maCde.Parameters.AddWithValue("@noliaison", noliaison);
+                            maCde.Parameters.AddWithValue("@tarif", tarif);
+
+                            int nb = maCde.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("Nouveau Tarif ajouter !");
+                } 
             }
             catch (Exception ex)
             {
@@ -226,5 +231,23 @@ namespace Atlantik
                 maCo.Close();
             }
         }
-    }
+
+        private void tbxCategorie_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tbx = (TextBox)sender;
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbx.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbx.BackColor = Color.OrangeRed;
+                BtnAjout.Enabled = false;
+            }
+            else
+            {
+                tbx.BackColor = Color.LightGreen;
+                BtnAjout.Enabled = true;
+            }
+        }
+    } 
 }

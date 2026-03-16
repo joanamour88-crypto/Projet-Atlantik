@@ -173,7 +173,7 @@ namespace Atlantik
                         string letcat = tab[0].ToString();
                         int capamax = int.Parse(tbx.Text);
 
-                        string requête = "UPDATE contenir SET capacitemax = @capacitemax WHERE lettrecategorie=@letcat AND  nobateau = @nobateau";
+                        string requête = "UPDATE contenir SET capacitemax = @capacitemax WHERE lettrecategorie = @letcat AND  nobateau = @nobateau";
                         maCde = new MySqlCommand(requête, maCo);
 
                         maCde.Parameters.AddWithValue("@letcat", letcat);

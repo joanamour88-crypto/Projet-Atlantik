@@ -6,9 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Atlantik
 {
@@ -49,6 +49,7 @@ namespace Atlantik
                     txt.Location = new Point(125, i * 25);
                     txt.Tag = letcat;
                     txt.Width = 75;
+                    txt.TextChanged += tbxCategorie_TextChanged;
                     GbxCapMax.Controls.Add(txt);
                     i = i + 1;
                 }
@@ -115,6 +116,23 @@ namespace Atlantik
             finally
             {
                 maCo.Close();
+            }
+        }
+        private void tbxCategorie_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tbx = (TextBox)sender;
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbx.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbx.BackColor = Color.OrangeRed;
+                BtnAjBateau.Enabled = false;
+            }
+            else
+            {
+                tbx.BackColor = Color.LightGreen;
+                BtnAjBateau.Enabled = true;
             }
         }
     }

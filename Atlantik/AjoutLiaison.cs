@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -91,40 +92,82 @@ namespace Atlantik
             MySqlCommand maCde;
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
-            double dist = int.Parse(TbxDist.Text);
-            Secteur sect = (Secteur)LstSect.SelectedItem;
-            Port dep = (Port)CbxDepart.SelectedItem;
-            Port arr = (Port)CbxArrive.SelectedItem;
-            int idSecteur = sect.GetNoSecteur();
-            int idDepart = dep.GetNoPort();
-            int idArrivé = dep.GetNoPort();
-            
-            try
+
+            if(LstSect.SelectedItem == null || CbxDepart.SelectedItem == null || CbxArrive.SelectedItem == null)
             {
-                maCo.Open();
-                if (dep == arr)
+                MessageBox.Show("Veuillez sélectionner un secteur, un port de départ et un port d'arrivé !!");
+            }
+            else
+            {
+                Secteur sect = (Secteur)LstSect.SelectedItem;
+                Port dep = (Port)CbxDepart.SelectedItem;
+                Port arr = (Port)CbxArrive.SelectedItem;
+                int idSecteur = sect.GetNoSecteur();
+                int idDepart = dep.GetNoPort();
+                int idArrivé = dep.GetNoPort();
+                double dist = int.Parse(TbxDist.Text);
+
+                MessageBox.Show(TbxDist.Text.ToString());
+
+                try
                 {
-                    MessageBox.Show("C'est le même départ et arriver, change ça vite mon Grand !!");
-                }else
-                {
-                    string requête = "INSERT INTO liaison(noport_depart, nosecteur, noport_arrivee, distance) VALUES (@dep, @sect, @arr, @dist)";
-                    maCde = new MySqlCommand(requête, maCo);
-                    maCde.Parameters.AddWithValue("@dep", idDepart);
-                    maCde.Parameters.AddWithValue("@sect", idSecteur);
-                    maCde.Parameters.AddWithValue("@arr", idArrivé);
-                    maCde.Parameters.AddWithValue("@dist", dist);
-                    int nb = maCde.ExecuteNonQuery();
-                    MessageBox.Show("Nouvelle liaison ajouter !");
+                    maCo.Open();
+
+                    if (dep == arr)
+                    {
+                        MessageBox.Show("C'est le même départ et arriver, change ça vite mon Grand !!");
+                    }
+                    else
+                    {
+                        string requête = "INSERT INTO liaison(noport_depart, nosecteur, noport_arrivee, distance) VALUES (@dep, @sect, @arr, @dist)";
+                        maCde = new MySqlCommand(requête, maCo);
+                        maCde.Parameters.AddWithValue("@dep", idDepart);
+                        maCde.Parameters.AddWithValue("@sect", idSecteur);
+                        maCde.Parameters.AddWithValue("@arr", idArrivé);
+                        maCde.Parameters.AddWithValue("@dist", dist);
+                        int nb = maCde.ExecuteNonQuery();
+                        MessageBox.Show("Nouvelle liaison ajouter !");
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    maCo.Close();
+                }
+                
             }
-            catch (Exception ex)
+        }
+
+        private void Tbxvalid_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TbxDist_Validating(object sender, CancelEventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var résultat = objetRegEx.Match(TbxDist.Text);
+
+            if (!résultat.Success || TbxDist.Text == "")
             {
-                MessageBox.Show(ex.Message);
+                TbxDist.BackColor = Color.Red;
+                e.Cancel = true;
+                MessageBox.Show("Veuillez saisir un nombre pour la distance !!");
+                //ErrorProvider.SetError(TbxDist, "Saisir un nombre ! ");
             }
-            finally
+            else
             {
-                maCo.Close();
+                TbxDist.BackColor = Color.Green;
+                //ErrorProvider.Clear();
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

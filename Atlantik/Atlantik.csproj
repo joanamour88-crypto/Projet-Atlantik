@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
@@ -60,8 +63,8 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=9.6.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.9.6.0\lib\net462\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.1.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql, Version=8.0.8.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.8.0.8\lib\netstandard2.0\Npgsql.dll</HintPath>
@@ -131,6 +134,12 @@
     <Compile Include="Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
+    <Compile Include="AfficheDetailsReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AfficheDetailsReservation.Designer.cs">
+      <DependentUpon>AfficheDetailsReservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="AfficheTraversee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +184,7 @@
     </Compile>
     <Compile Include="Bateau.cs" />
     <Compile Include="Categories.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="LettreCategorie.cs" />
     <Compile Include="Liaison.cs" />
     <Compile Include="ModifBateau.cs">
@@ -182,6 +192,12 @@
     </Compile>
     <Compile Include="ModifBateau.Designer.cs">
       <DependentUpon>ModifBateau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifParametre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifParametre.Designer.cs">
+      <DependentUpon>ModifParametre.cs</DependentUpon>
     </Compile>
     <Compile Include="Periode.cs" />
     <Compile Include="Port.cs" />
@@ -192,6 +208,9 @@
     <Compile Include="Traversees.cs" />
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AfficheDetailsReservation.resx">
+      <DependentUpon>AfficheDetailsReservation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AfficheTraversee.resx">
       <DependentUpon>AfficheTraversee.cs</DependentUpon>
@@ -216,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModifBateau.resx">
       <DependentUpon>ModifBateau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifParametre.resx">
+      <DependentUpon>ModifParametre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

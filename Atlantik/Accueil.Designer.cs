@@ -51,7 +51,7 @@
             // Titre
             // 
             this.Titre.AutoSize = true;
-            this.Titre.Location = new System.Drawing.Point(446, 51);
+            this.Titre.Location = new System.Drawing.Point(437, 63);
             this.Titre.Name = "Titre";
             this.Titre.Size = new System.Drawing.Size(42, 13);
             this.Titre.TabIndex = 0;
@@ -148,6 +148,7 @@
             this.lesParamètresDuSiteToolStripMenuItem.Name = "lesParamètresDuSiteToolStripMenuItem";
             this.lesParamètresDuSiteToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.lesParamètresDuSiteToolStripMenuItem.Text = "Les paramètres du site";
+            this.lesParamètresDuSiteToolStripMenuItem.Click += new System.EventHandler(this.lesParamètresDuSiteToolStripMenuItem_Click);
             // 
             // afficherToolStripMenuItem
             // 
@@ -172,6 +173,7 @@
             this.lesDétailsDuneRéservationPourUnClientToolStripMenuItem.Name = "lesDétailsDuneRéservationPourUnClientToolStripMenuItem";
             this.lesDétailsDuneRéservationPourUnClientToolStripMenuItem.Size = new System.Drawing.Size(524, 22);
             this.lesDétailsDuneRéservationPourUnClientToolStripMenuItem.Text = "Les détails d\'une réservation pour un client";
+            this.lesDétailsDuneRéservationPourUnClientToolStripMenuItem.Click += new System.EventHandler(this.lesDétailsDuneRéservationPourUnClientToolStripMenuItem_Click);
             // 
             // aProposToolStripMenuItem
             // 
