@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,10 +32,10 @@ namespace Atlantik
                 MySqlCommand maCde = new MySqlCommand(requête, maCo);
                 MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
                 jeuEnregistrements.Read();
-                TbxSite.Text = jeuEnregistrements["site_pb"].ToString();
-                TbxRang.Text = jeuEnregistrements["rang_pb"].ToString();
-                TbxIdentifiant.Text = jeuEnregistrements["identifiant_pb"].ToString();
-                TbxCleHMAC.Text = jeuEnregistrements["clehmac_pb"].ToString();
+                tbxsite.Text = jeuEnregistrements["site_pb"].ToString();
+                tbxrang.Text = jeuEnregistrements["rang_pb"].ToString();
+                tbxidentifiant.Text = jeuEnregistrements["identifiant_pb"].ToString();
+                tbxclehmac.Text = jeuEnregistrements["clehmac_pb"].ToString();
             }
             catch (Exception ex)
             {
@@ -56,12 +57,12 @@ namespace Atlantik
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
-            string site = TbxSite.Text;
-            string rang = TbxRang.Text;
-            string identifiant = TbxIdentifiant.Text;
-            string clehmac = TbxCleHMAC.Text;
-            int enprod = Convert.ToInt32(Cbxenrpod.Checked);
-            string mail = TbxMail.Text;
+            string site = tbxsite.Text;
+            string rang = tbxrang.Text;
+            string identifiant = tbxidentifiant.Text;
+            string clehmac = tbxclehmac.Text;
+            int enprod = Convert.ToInt32(cbxenrpod.Checked);
+            string mail = tbxmail.Text;
             try
             {
                 maCo.Open();
@@ -86,6 +87,57 @@ namespace Atlantik
             finally
             {
                 maCo.Close();
+            }
+        }
+
+        private void tbxsite_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void tbxrang_TextChanged(object sender, EventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbxrang.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxrang.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                tbxrang.BackColor = Color.LightGreen;
+            }
+        }
+
+        private void tbxidentifiant_TextChanged(object sender, EventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbxrang.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxrang.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                tbxrang.BackColor = Color.LightGreen;
+            }
+        }
+
+        private void tbxsite_Validating(object sender, CancelEventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbxrang.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxrang.BackColor = Color.OrangeRed;
+                e.Cancel = true;
+            }
+            else
+            {
+                tbxrang.BackColor = Color.LightGreen;
+                e.Cancel = false;
             }
         }
     }

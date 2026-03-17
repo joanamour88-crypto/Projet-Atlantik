@@ -28,131 +28,131 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Btnajout = new System.Windows.Forms.Button();
-            this.Cbxnombateau = new System.Windows.Forms.ComboBox();
-            this.LblLiaison = new System.Windows.Forms.Label();
-            this.Lbldatarrivee = new System.Windows.Forms.Label();
-            this.Lbldatdep = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Lstsect = new System.Windows.Forms.ListBox();
-            this.Lblsect = new System.Windows.Forms.Label();
-            this.Cbxliaison = new System.Windows.Forms.ComboBox();
-            this.Dtpdepart = new System.Windows.Forms.DateTimePicker();
-            this.Dtparrivee = new System.Windows.Forms.DateTimePicker();
+            this.btnajouter = new System.Windows.Forms.Button();
+            this.cmbnombateau = new System.Windows.Forms.ComboBox();
+            this.lblliaison = new System.Windows.Forms.Label();
+            this.lbldatarrivee = new System.Windows.Forms.Label();
+            this.lbldatdep = new System.Windows.Forms.Label();
+            this.lblnombateau = new System.Windows.Forms.Label();
+            this.lbxsecteurs = new System.Windows.Forms.ListBox();
+            this.lblsecteur = new System.Windows.Forms.Label();
+            this.cmbliaison = new System.Windows.Forms.ComboBox();
+            this.datedepart = new System.Windows.Forms.DateTimePicker();
+            this.dateparrivee = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // Btnajout
+            // btnajouter
             // 
-            this.Btnajout.BackColor = System.Drawing.Color.NavajoWhite;
-            this.Btnajout.Location = new System.Drawing.Point(201, 299);
-            this.Btnajout.Name = "Btnajout";
-            this.Btnajout.Size = new System.Drawing.Size(297, 51);
-            this.Btnajout.TabIndex = 0;
-            this.Btnajout.Text = "Ajouter";
-            this.Btnajout.UseVisualStyleBackColor = false;
-            this.Btnajout.Click += new System.EventHandler(this.Btnajout_Click);
+            this.btnajouter.BackColor = System.Drawing.Color.NavajoWhite;
+            this.btnajouter.Location = new System.Drawing.Point(201, 299);
+            this.btnajouter.Name = "btnajouter";
+            this.btnajouter.Size = new System.Drawing.Size(297, 51);
+            this.btnajouter.TabIndex = 0;
+            this.btnajouter.Text = "Ajouter";
+            this.btnajouter.UseVisualStyleBackColor = false;
+            this.btnajouter.Click += new System.EventHandler(this.Btnajout_Click);
             // 
-            // Cbxnombateau
+            // cmbnombateau
             // 
-            this.Cbxnombateau.FormattingEnabled = true;
-            this.Cbxnombateau.Location = new System.Drawing.Point(252, 64);
-            this.Cbxnombateau.Name = "Cbxnombateau";
-            this.Cbxnombateau.Size = new System.Drawing.Size(121, 21);
-            this.Cbxnombateau.TabIndex = 1;
+            this.cmbnombateau.FormattingEnabled = true;
+            this.cmbnombateau.Location = new System.Drawing.Point(252, 64);
+            this.cmbnombateau.Name = "cmbnombateau";
+            this.cmbnombateau.Size = new System.Drawing.Size(121, 21);
+            this.cmbnombateau.TabIndex = 1;
             // 
-            // LblLiaison
+            // lblliaison
             // 
-            this.LblLiaison.AutoSize = true;
-            this.LblLiaison.Location = new System.Drawing.Point(40, 283);
-            this.LblLiaison.Name = "LblLiaison";
-            this.LblLiaison.Size = new System.Drawing.Size(46, 13);
-            this.LblLiaison.TabIndex = 2;
-            this.LblLiaison.Text = "Liaison :";
+            this.lblliaison.AutoSize = true;
+            this.lblliaison.Location = new System.Drawing.Point(40, 283);
+            this.lblliaison.Name = "lblliaison";
+            this.lblliaison.Size = new System.Drawing.Size(46, 13);
+            this.lblliaison.TabIndex = 2;
+            this.lblliaison.Text = "Liaison :";
             // 
-            // Lbldatarrivee
+            // lbldatarrivee
             // 
-            this.Lbldatarrivee.AutoSize = true;
-            this.Lbldatarrivee.Location = new System.Drawing.Point(180, 238);
-            this.Lbldatarrivee.Name = "Lbldatarrivee";
-            this.Lbldatarrivee.Size = new System.Drawing.Size(121, 13);
-            this.Lbldatarrivee.TabIndex = 3;
-            this.Lbldatarrivee.Text = "Date et heure d\'arrivée :";
+            this.lbldatarrivee.AutoSize = true;
+            this.lbldatarrivee.Location = new System.Drawing.Point(180, 238);
+            this.lbldatarrivee.Name = "lbldatarrivee";
+            this.lbldatarrivee.Size = new System.Drawing.Size(121, 13);
+            this.lbldatarrivee.TabIndex = 3;
+            this.lbldatarrivee.Text = "Date et heure d\'arrivée :";
             // 
-            // Lbldatdep
+            // lbldatdep
             // 
-            this.Lbldatdep.AutoSize = true;
-            this.Lbldatdep.Location = new System.Drawing.Point(175, 198);
-            this.Lbldatdep.Name = "Lbldatdep";
-            this.Lbldatdep.Size = new System.Drawing.Size(126, 13);
-            this.Lbldatdep.TabIndex = 4;
-            this.Lbldatdep.Text = "Date et heure de départ :";
+            this.lbldatdep.AutoSize = true;
+            this.lbldatdep.Location = new System.Drawing.Point(175, 198);
+            this.lbldatdep.Name = "lbldatdep";
+            this.lbldatdep.Size = new System.Drawing.Size(126, 13);
+            this.lbldatdep.TabIndex = 4;
+            this.lbldatdep.Text = "Date et heure de départ :";
             // 
-            // label4
+            // lblnombateau
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(175, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Nom bâteau :";
+            this.lblnombateau.AutoSize = true;
+            this.lblnombateau.Location = new System.Drawing.Point(175, 67);
+            this.lblnombateau.Name = "lblnombateau";
+            this.lblnombateau.Size = new System.Drawing.Size(71, 13);
+            this.lblnombateau.TabIndex = 5;
+            this.lblnombateau.Text = "Nom bâteau :";
             // 
-            // Lstsect
+            // lbxsecteurs
             // 
-            this.Lstsect.FormattingEnabled = true;
-            this.Lstsect.Location = new System.Drawing.Point(43, 83);
-            this.Lstsect.Name = "Lstsect";
-            this.Lstsect.Size = new System.Drawing.Size(120, 186);
-            this.Lstsect.TabIndex = 6;
-            this.Lstsect.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lbxsecteurs.FormattingEnabled = true;
+            this.lbxsecteurs.Location = new System.Drawing.Point(43, 83);
+            this.lbxsecteurs.Name = "lbxsecteurs";
+            this.lbxsecteurs.Size = new System.Drawing.Size(120, 186);
+            this.lbxsecteurs.TabIndex = 6;
+            this.lbxsecteurs.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // Lblsect
+            // lblsecteur
             // 
-            this.Lblsect.AutoSize = true;
-            this.Lblsect.Location = new System.Drawing.Point(40, 67);
-            this.Lblsect.Name = "Lblsect";
-            this.Lblsect.Size = new System.Drawing.Size(50, 13);
-            this.Lblsect.TabIndex = 7;
-            this.Lblsect.Text = "Secteur :";
+            this.lblsecteur.AutoSize = true;
+            this.lblsecteur.Location = new System.Drawing.Point(40, 67);
+            this.lblsecteur.Name = "lblsecteur";
+            this.lblsecteur.Size = new System.Drawing.Size(55, 13);
+            this.lblsecteur.TabIndex = 7;
+            this.lblsecteur.Text = "Secteurs :";
             // 
-            // Cbxliaison
+            // cmbliaison
             // 
-            this.Cbxliaison.FormattingEnabled = true;
-            this.Cbxliaison.Location = new System.Drawing.Point(42, 299);
-            this.Cbxliaison.Name = "Cbxliaison";
-            this.Cbxliaison.Size = new System.Drawing.Size(121, 21);
-            this.Cbxliaison.TabIndex = 8;
+            this.cmbliaison.FormattingEnabled = true;
+            this.cmbliaison.Location = new System.Drawing.Point(42, 299);
+            this.cmbliaison.Name = "cmbliaison";
+            this.cmbliaison.Size = new System.Drawing.Size(121, 21);
+            this.cmbliaison.TabIndex = 8;
             // 
-            // Dtpdepart
+            // datedepart
             // 
-            this.Dtpdepart.Location = new System.Drawing.Point(298, 192);
-            this.Dtpdepart.Name = "Dtpdepart";
-            this.Dtpdepart.Size = new System.Drawing.Size(200, 20);
-            this.Dtpdepart.TabIndex = 9;
-            this.Dtpdepart.ValueChanged += new System.EventHandler(this.Dtpdepart_ValueChanged);
+            this.datedepart.Location = new System.Drawing.Point(298, 192);
+            this.datedepart.Name = "datedepart";
+            this.datedepart.Size = new System.Drawing.Size(200, 20);
+            this.datedepart.TabIndex = 9;
+            this.datedepart.ValueChanged += new System.EventHandler(this.Dtpdepart_ValueChanged);
             // 
-            // Dtparrivee
+            // dateparrivee
             // 
-            this.Dtparrivee.Location = new System.Drawing.Point(298, 238);
-            this.Dtparrivee.Name = "Dtparrivee";
-            this.Dtparrivee.Size = new System.Drawing.Size(200, 20);
-            this.Dtparrivee.TabIndex = 10;
+            this.dateparrivee.Location = new System.Drawing.Point(298, 238);
+            this.dateparrivee.Name = "dateparrivee";
+            this.dateparrivee.Size = new System.Drawing.Size(200, 20);
+            this.dateparrivee.TabIndex = 10;
             // 
             // AjoutTraversee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(548, 375);
-            this.Controls.Add(this.Dtparrivee);
-            this.Controls.Add(this.Dtpdepart);
-            this.Controls.Add(this.Cbxliaison);
-            this.Controls.Add(this.Lblsect);
-            this.Controls.Add(this.Lstsect);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.Lbldatdep);
-            this.Controls.Add(this.Lbldatarrivee);
-            this.Controls.Add(this.LblLiaison);
-            this.Controls.Add(this.Cbxnombateau);
-            this.Controls.Add(this.Btnajout);
+            this.Controls.Add(this.dateparrivee);
+            this.Controls.Add(this.datedepart);
+            this.Controls.Add(this.cmbliaison);
+            this.Controls.Add(this.lblsecteur);
+            this.Controls.Add(this.lbxsecteurs);
+            this.Controls.Add(this.lblnombateau);
+            this.Controls.Add(this.lbldatdep);
+            this.Controls.Add(this.lbldatarrivee);
+            this.Controls.Add(this.lblliaison);
+            this.Controls.Add(this.cmbnombateau);
+            this.Controls.Add(this.btnajouter);
             this.Name = "AjoutTraversee";
             this.Text = "AjoutTraversee";
             this.Load += new System.EventHandler(this.AjoutTraversee_Load);
@@ -163,16 +163,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Btnajout;
-        private System.Windows.Forms.ComboBox Cbxnombateau;
-        private System.Windows.Forms.Label LblLiaison;
-        private System.Windows.Forms.Label Lbldatarrivee;
-        private System.Windows.Forms.Label Lbldatdep;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox Lstsect;
-        private System.Windows.Forms.Label Lblsect;
-        private System.Windows.Forms.ComboBox Cbxliaison;
-        private System.Windows.Forms.DateTimePicker Dtpdepart;
-        private System.Windows.Forms.DateTimePicker Dtparrivee;
+        private System.Windows.Forms.Button btnajouter;
+        private System.Windows.Forms.ComboBox cmbnombateau;
+        private System.Windows.Forms.Label lblliaison;
+        private System.Windows.Forms.Label lbldatarrivee;
+        private System.Windows.Forms.Label lbldatdep;
+        private System.Windows.Forms.Label lblnombateau;
+        private System.Windows.Forms.ListBox lbxsecteurs;
+        private System.Windows.Forms.Label lblsecteur;
+        private System.Windows.Forms.ComboBox cmbliaison;
+        private System.Windows.Forms.DateTimePicker datedepart;
+        private System.Windows.Forms.DateTimePicker dateparrivee;
     }
 }

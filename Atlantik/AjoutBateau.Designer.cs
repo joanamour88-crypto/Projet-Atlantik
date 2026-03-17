@@ -28,56 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.Tbxnombateau = new System.Windows.Forms.TextBox();
-            this.GbxCapMax = new System.Windows.Forms.GroupBox();
-            this.BtnAjBateau = new System.Windows.Forms.Button();
+            this.lblnombateau = new System.Windows.Forms.Label();
+            this.tbxnombateau = new System.Windows.Forms.TextBox();
+            this.gbxcapmax = new System.Windows.Forms.GroupBox();
+            this.btnajbateau = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblnombateau
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nom bateau :";
+            this.lblnombateau.AutoSize = true;
+            this.lblnombateau.Location = new System.Drawing.Point(12, 40);
+            this.lblnombateau.Name = "lblnombateau";
+            this.lblnombateau.Size = new System.Drawing.Size(71, 13);
+            this.lblnombateau.TabIndex = 0;
+            this.lblnombateau.Text = "Nom bateau :";
             // 
-            // Tbxnombateau
+            // tbxnombateau
             // 
-            this.Tbxnombateau.Location = new System.Drawing.Point(89, 40);
-            this.Tbxnombateau.Name = "Tbxnombateau";
-            this.Tbxnombateau.Size = new System.Drawing.Size(100, 20);
-            this.Tbxnombateau.TabIndex = 1;
+            this.tbxnombateau.Location = new System.Drawing.Point(89, 33);
+            this.tbxnombateau.Name = "tbxnombateau";
+            this.tbxnombateau.Size = new System.Drawing.Size(100, 20);
+            this.tbxnombateau.TabIndex = 1;
+            this.tbxnombateau.TextChanged += new System.EventHandler(this.tbxnombateau_TextChanged);
             // 
-            // GbxCapMax
+            // gbxcapmax
             // 
-            this.GbxCapMax.Location = new System.Drawing.Point(224, 37);
-            this.GbxCapMax.Name = "GbxCapMax";
-            this.GbxCapMax.Size = new System.Drawing.Size(227, 162);
-            this.GbxCapMax.TabIndex = 2;
-            this.GbxCapMax.TabStop = false;
-            this.GbxCapMax.Text = "Capacité Maximales";
+            this.gbxcapmax.Location = new System.Drawing.Point(224, 37);
+            this.gbxcapmax.Name = "gbxcapmax";
+            this.gbxcapmax.Size = new System.Drawing.Size(227, 162);
+            this.gbxcapmax.TabIndex = 2;
+            this.gbxcapmax.TabStop = false;
+            this.gbxcapmax.Text = "Capacité Maximales";
             // 
-            // BtnAjBateau
+            // btnajbateau
             // 
-            this.BtnAjBateau.Location = new System.Drawing.Point(89, 176);
-            this.BtnAjBateau.Name = "BtnAjBateau";
-            this.BtnAjBateau.Size = new System.Drawing.Size(100, 23);
-            this.BtnAjBateau.TabIndex = 0;
-            this.BtnAjBateau.Text = "Ajouter";
-            this.BtnAjBateau.UseVisualStyleBackColor = true;
-            this.BtnAjBateau.Click += new System.EventHandler(this.BtnAjBateau_Click);
+            this.btnajbateau.Location = new System.Drawing.Point(89, 176);
+            this.btnajbateau.Name = "btnajbateau";
+            this.btnajbateau.Size = new System.Drawing.Size(100, 23);
+            this.btnajbateau.TabIndex = 0;
+            this.btnajbateau.Text = "Ajouter";
+            this.btnajbateau.UseVisualStyleBackColor = true;
+            this.btnajbateau.Click += new System.EventHandler(this.BtnAjBateau_Click);
             // 
             // AjoutBateau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 214);
-            this.Controls.Add(this.BtnAjBateau);
-            this.Controls.Add(this.GbxCapMax);
-            this.Controls.Add(this.Tbxnombateau);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnajbateau);
+            this.Controls.Add(this.gbxcapmax);
+            this.Controls.Add(this.tbxnombateau);
+            this.Controls.Add(this.lblnombateau);
             this.Name = "AjoutBateau";
             this.Text = "AjoutBateau";
             this.Load += new System.EventHandler(this.AjoutBateau_Load);
@@ -88,9 +89,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox Tbxnombateau;
-        private System.Windows.Forms.GroupBox GbxCapMax;
-        private System.Windows.Forms.Button BtnAjBateau;
+        private System.Windows.Forms.Label lblnombateau;
+        private System.Windows.Forms.TextBox tbxnombateau;
+        private System.Windows.Forms.GroupBox gbxcapmax;
+        private System.Windows.Forms.Button btnajbateau;
     }
 }

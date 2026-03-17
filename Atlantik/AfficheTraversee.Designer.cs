@@ -28,126 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Cbxliaison = new System.Windows.Forms.ComboBox();
-            this.Btnafftraverse = new System.Windows.Forms.Button();
-            this.Lstsect = new System.Windows.Forms.ListBox();
-            this.Dtpdate = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.LvTraversee = new System.Windows.Forms.ListView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.cmbliaison = new System.Windows.Forms.ComboBox();
+            this.btnafftraverse = new System.Windows.Forms.Button();
+            this.lbxsecteurs = new System.Windows.Forms.ListBox();
+            this.date_date = new System.Windows.Forms.DateTimePicker();
+            this.lblsecteurs = new System.Windows.Forms.Label();
+            this.lblliaison = new System.Windows.Forms.Label();
+            this.lvtraversee = new System.Windows.Forms.ListView();
+            this.lbldate = new System.Windows.Forms.Label();
+            this.lbltraversee = new System.Windows.Forms.Label();
+            this.lblplacedispo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Cbxliaison
+            // cmbliaison
             // 
-            this.Cbxliaison.FormattingEnabled = true;
-            this.Cbxliaison.Location = new System.Drawing.Point(52, 262);
-            this.Cbxliaison.Name = "Cbxliaison";
-            this.Cbxliaison.Size = new System.Drawing.Size(121, 21);
-            this.Cbxliaison.TabIndex = 0;
+            this.cmbliaison.FormattingEnabled = true;
+            this.cmbliaison.Location = new System.Drawing.Point(52, 262);
+            this.cmbliaison.Name = "cmbliaison";
+            this.cmbliaison.Size = new System.Drawing.Size(121, 21);
+            this.cmbliaison.TabIndex = 0;
             // 
-            // Btnafftraverse
+            // btnafftraverse
             // 
-            this.Btnafftraverse.Location = new System.Drawing.Point(226, 103);
-            this.Btnafftraverse.Name = "Btnafftraverse";
-            this.Btnafftraverse.Size = new System.Drawing.Size(448, 23);
-            this.Btnafftraverse.TabIndex = 1;
-            this.Btnafftraverse.Text = "Afficher les traversées";
-            this.Btnafftraverse.UseVisualStyleBackColor = true;
-            this.Btnafftraverse.Click += new System.EventHandler(this.Btnafftraverse_Click);
+            this.btnafftraverse.Location = new System.Drawing.Point(226, 103);
+            this.btnafftraverse.Name = "btnafftraverse";
+            this.btnafftraverse.Size = new System.Drawing.Size(448, 23);
+            this.btnafftraverse.TabIndex = 1;
+            this.btnafftraverse.Text = "Afficher les traversées";
+            this.btnafftraverse.UseVisualStyleBackColor = true;
+            this.btnafftraverse.Click += new System.EventHandler(this.Btnafftraverse_Click);
             // 
-            // Lstsect
+            // lbxsecteurs
             // 
-            this.Lstsect.FormattingEnabled = true;
-            this.Lstsect.Location = new System.Drawing.Point(53, 60);
-            this.Lstsect.Name = "Lstsect";
-            this.Lstsect.Size = new System.Drawing.Size(120, 173);
-            this.Lstsect.TabIndex = 2;
-            this.Lstsect.SelectedIndexChanged += new System.EventHandler(this.Lstsect_SelectedIndexChanged);
+            this.lbxsecteurs.FormattingEnabled = true;
+            this.lbxsecteurs.Location = new System.Drawing.Point(53, 60);
+            this.lbxsecteurs.Name = "lbxsecteurs";
+            this.lbxsecteurs.Size = new System.Drawing.Size(120, 173);
+            this.lbxsecteurs.TabIndex = 2;
+            this.lbxsecteurs.SelectedIndexChanged += new System.EventHandler(this.Lstsect_SelectedIndexChanged);
             // 
-            // Dtpdate
+            // date_date
             // 
-            this.Dtpdate.CustomFormat = "yyyy-MM-dd";
-            this.Dtpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Dtpdate.Location = new System.Drawing.Point(474, 60);
-            this.Dtpdate.MinDate = new System.DateTime(1834, 7, 24, 0, 0, 0, 0);
-            this.Dtpdate.Name = "Dtpdate";
-            this.Dtpdate.Size = new System.Drawing.Size(97, 20);
-            this.Dtpdate.TabIndex = 3;
-            this.Dtpdate.Value = new System.DateTime(2021, 7, 10, 0, 0, 0, 0);
+            this.date_date.CustomFormat = "yyyy-MM-dd";
+            this.date_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.date_date.Location = new System.Drawing.Point(474, 60);
+            this.date_date.MinDate = new System.DateTime(1834, 7, 24, 0, 0, 0, 0);
+            this.date_date.Name = "date_date";
+            this.date_date.Size = new System.Drawing.Size(97, 20);
+            this.date_date.TabIndex = 3;
+            this.date_date.Value = new System.DateTime(2021, 7, 10, 0, 0, 0, 0);
             // 
-            // label1
+            // lblsecteurs
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Secteurs :";
+            this.lblsecteurs.AutoSize = true;
+            this.lblsecteurs.Location = new System.Drawing.Point(49, 44);
+            this.lblsecteurs.Name = "lblsecteurs";
+            this.lblsecteurs.Size = new System.Drawing.Size(55, 13);
+            this.lblsecteurs.TabIndex = 4;
+            this.lblsecteurs.Text = "Secteurs :";
             // 
-            // label2
+            // lblliaison
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 246);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Liaison :";
+            this.lblliaison.AutoSize = true;
+            this.lblliaison.Location = new System.Drawing.Point(50, 246);
+            this.lblliaison.Name = "lblliaison";
+            this.lblliaison.Size = new System.Drawing.Size(46, 13);
+            this.lblliaison.TabIndex = 5;
+            this.lblliaison.Text = "Liaison :";
             // 
-            // LvTraversee
+            // lvtraversee
             // 
-            this.LvTraversee.HideSelection = false;
-            this.LvTraversee.Location = new System.Drawing.Point(226, 162);
-            this.LvTraversee.Name = "LvTraversee";
-            this.LvTraversee.Size = new System.Drawing.Size(448, 214);
-            this.LvTraversee.TabIndex = 6;
-            this.LvTraversee.UseCompatibleStateImageBehavior = false;
-            this.LvTraversee.SelectedIndexChanged += new System.EventHandler(this.LvTraversee_SelectedIndexChanged);
+            this.lvtraversee.HideSelection = false;
+            this.lvtraversee.Location = new System.Drawing.Point(226, 162);
+            this.lvtraversee.Name = "lvtraversee";
+            this.lvtraversee.Size = new System.Drawing.Size(448, 214);
+            this.lvtraversee.TabIndex = 6;
+            this.lvtraversee.UseCompatibleStateImageBehavior = false;
+            this.lvtraversee.SelectedIndexChanged += new System.EventHandler(this.LvTraversee_SelectedIndexChanged);
             // 
-            // label3
+            // lbldate
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(301, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Date (par défault date du jour) :";
+            this.lbldate.AutoSize = true;
+            this.lbldate.Location = new System.Drawing.Point(301, 66);
+            this.lbldate.Name = "lbldate";
+            this.lbldate.Size = new System.Drawing.Size(154, 13);
+            this.lbldate.TabIndex = 7;
+            this.lbldate.Text = "Date (par défault date du jour) :";
             // 
-            // label4
+            // lbltraversee
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(223, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Traversée";
+            this.lbltraversee.AutoSize = true;
+            this.lbltraversee.Location = new System.Drawing.Point(223, 146);
+            this.lbltraversee.Name = "lbltraversee";
+            this.lbltraversee.Size = new System.Drawing.Size(55, 13);
+            this.lbltraversee.TabIndex = 8;
+            this.lbltraversee.Text = "Traversée";
             // 
-            // label5
+            // lblplacedispo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(515, 146);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(159, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Places disponibles par catégorie";
+            this.lblplacedispo.AutoSize = true;
+            this.lblplacedispo.Location = new System.Drawing.Point(515, 146);
+            this.lblplacedispo.Name = "lblplacedispo";
+            this.lblplacedispo.Size = new System.Drawing.Size(159, 13);
+            this.lblplacedispo.TabIndex = 9;
+            this.lblplacedispo.Text = "Places disponibles par catégorie";
             // 
             // AfficheTraversee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.LvTraversee);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Dtpdate);
-            this.Controls.Add(this.Lstsect);
-            this.Controls.Add(this.Btnafftraverse);
-            this.Controls.Add(this.Cbxliaison);
+            this.Controls.Add(this.lblplacedispo);
+            this.Controls.Add(this.lbltraversee);
+            this.Controls.Add(this.lbldate);
+            this.Controls.Add(this.lvtraversee);
+            this.Controls.Add(this.lblliaison);
+            this.Controls.Add(this.lblsecteurs);
+            this.Controls.Add(this.date_date);
+            this.Controls.Add(this.lbxsecteurs);
+            this.Controls.Add(this.btnafftraverse);
+            this.Controls.Add(this.cmbliaison);
             this.Name = "AfficheTraversee";
             this.Text = "AfficheTraversee";
             this.Load += new System.EventHandler(this.AfficheTraversee_Load);
@@ -158,15 +158,15 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox Cbxliaison;
-        private System.Windows.Forms.Button Btnafftraverse;
-        private System.Windows.Forms.ListBox Lstsect;
-        private System.Windows.Forms.DateTimePicker Dtpdate;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListView LvTraversee;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbliaison;
+        private System.Windows.Forms.Button btnafftraverse;
+        private System.Windows.Forms.ListBox lbxsecteurs;
+        private System.Windows.Forms.DateTimePicker date_date;
+        private System.Windows.Forms.Label lblsecteurs;
+        private System.Windows.Forms.Label lblliaison;
+        private System.Windows.Forms.ListView lvtraversee;
+        private System.Windows.Forms.Label lbldate;
+        private System.Windows.Forms.Label lbltraversee;
+        private System.Windows.Forms.Label lblplacedispo;
     }
 }

@@ -28,88 +28,89 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.CbxDepart = new System.Windows.Forms.ComboBox();
-            this.CbxArrive = new System.Windows.Forms.ComboBox();
-            this.TbxDist = new System.Windows.Forms.TextBox();
-            this.LstSect = new System.Windows.Forms.ListBox();
+            this.lblsect = new System.Windows.Forms.Label();
+            this.lbldepart = new System.Windows.Forms.Label();
+            this.lblarrivee = new System.Windows.Forms.Label();
+            this.lbldistance = new System.Windows.Forms.Label();
+            this.cmbdepart = new System.Windows.Forms.ComboBox();
+            this.cmbarrivee = new System.Windows.Forms.ComboBox();
+            this.tbxdist = new System.Windows.Forms.TextBox();
+            this.lbxsect = new System.Windows.Forms.ListBox();
             this.BtnAjout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblsect
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Secteurs :";
+            this.lblsect.AutoSize = true;
+            this.lblsect.Location = new System.Drawing.Point(41, 46);
+            this.lblsect.Name = "lblsect";
+            this.lblsect.Size = new System.Drawing.Size(55, 13);
+            this.lblsect.TabIndex = 0;
+            this.lblsect.Text = "Secteurs :";
             // 
-            // label2
+            // lbldepart
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(186, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Départ :";
+            this.lbldepart.AutoSize = true;
+            this.lbldepart.Location = new System.Drawing.Point(186, 46);
+            this.lbldepart.Name = "lbldepart";
+            this.lbldepart.Size = new System.Drawing.Size(45, 13);
+            this.lbldepart.TabIndex = 1;
+            this.lbldepart.Text = "Départ :";
             // 
-            // label3
+            // lblarrivee
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(400, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Arrivée :";
+            this.lblarrivee.AutoSize = true;
+            this.lblarrivee.Location = new System.Drawing.Point(400, 46);
+            this.lblarrivee.Name = "lblarrivee";
+            this.lblarrivee.Size = new System.Drawing.Size(46, 13);
+            this.lblarrivee.TabIndex = 2;
+            this.lblarrivee.Text = "Arrivée :";
             // 
-            // label4
+            // lbldistance
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(391, 151);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Distance :";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.lbldistance.AutoSize = true;
+            this.lbldistance.Location = new System.Drawing.Point(391, 151);
+            this.lbldistance.Name = "lbldistance";
+            this.lbldistance.Size = new System.Drawing.Size(55, 13);
+            this.lbldistance.TabIndex = 3;
+            this.lbldistance.Text = "Distance :";
+            this.lbldistance.Click += new System.EventHandler(this.label4_Click);
             // 
-            // CbxDepart
+            // cmbdepart
             // 
-            this.CbxDepart.FormattingEnabled = true;
-            this.CbxDepart.Location = new System.Drawing.Point(237, 43);
-            this.CbxDepart.Name = "CbxDepart";
-            this.CbxDepart.Size = new System.Drawing.Size(121, 21);
-            this.CbxDepart.TabIndex = 4;
-            this.CbxDepart.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbdepart.FormattingEnabled = true;
+            this.cmbdepart.Location = new System.Drawing.Point(237, 43);
+            this.cmbdepart.Name = "cmbdepart";
+            this.cmbdepart.Size = new System.Drawing.Size(121, 21);
+            this.cmbdepart.TabIndex = 4;
+            this.cmbdepart.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // CbxArrive
+            // cmbarrivee
             // 
-            this.CbxArrive.FormattingEnabled = true;
-            this.CbxArrive.Location = new System.Drawing.Point(452, 43);
-            this.CbxArrive.Name = "CbxArrive";
-            this.CbxArrive.Size = new System.Drawing.Size(121, 21);
-            this.CbxArrive.TabIndex = 5;
-            this.CbxArrive.SelectedIndexChanged += new System.EventHandler(this.CbxArrive_SelectedIndexChanged);
+            this.cmbarrivee.FormattingEnabled = true;
+            this.cmbarrivee.Location = new System.Drawing.Point(452, 43);
+            this.cmbarrivee.Name = "cmbarrivee";
+            this.cmbarrivee.Size = new System.Drawing.Size(121, 21);
+            this.cmbarrivee.TabIndex = 5;
+            this.cmbarrivee.SelectedIndexChanged += new System.EventHandler(this.CbxArrive_SelectedIndexChanged);
             // 
-            // TbxDist
+            // tbxdist
             // 
-            this.TbxDist.Location = new System.Drawing.Point(452, 148);
-            this.TbxDist.Name = "TbxDist";
-            this.TbxDist.Size = new System.Drawing.Size(121, 20);
-            this.TbxDist.TabIndex = 7;
-            this.TbxDist.Validating += new System.ComponentModel.CancelEventHandler(this.TbxDist_Validating);
+            this.tbxdist.Location = new System.Drawing.Point(452, 148);
+            this.tbxdist.Name = "tbxdist";
+            this.tbxdist.Size = new System.Drawing.Size(121, 20);
+            this.tbxdist.TabIndex = 7;
+            this.tbxdist.TextChanged += new System.EventHandler(this.tbxdist_TextChanged);
+            this.tbxdist.Validating += new System.ComponentModel.CancelEventHandler(this.TbxDist_Validating);
             // 
-            // LstSect
+            // lbxsect
             // 
-            this.LstSect.FormattingEnabled = true;
-            this.LstSect.Location = new System.Drawing.Point(44, 73);
-            this.LstSect.Name = "LstSect";
-            this.LstSect.Size = new System.Drawing.Size(120, 186);
-            this.LstSect.TabIndex = 8;
-            this.LstSect.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lbxsect.FormattingEnabled = true;
+            this.lbxsect.Location = new System.Drawing.Point(44, 73);
+            this.lbxsect.Name = "lbxsect";
+            this.lbxsect.Size = new System.Drawing.Size(120, 186);
+            this.lbxsect.TabIndex = 8;
+            this.lbxsect.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // BtnAjout
             // 
@@ -127,14 +128,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 310);
             this.Controls.Add(this.BtnAjout);
-            this.Controls.Add(this.LstSect);
-            this.Controls.Add(this.TbxDist);
-            this.Controls.Add(this.CbxArrive);
-            this.Controls.Add(this.CbxDepart);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbxsect);
+            this.Controls.Add(this.tbxdist);
+            this.Controls.Add(this.cmbarrivee);
+            this.Controls.Add(this.cmbdepart);
+            this.Controls.Add(this.lbldistance);
+            this.Controls.Add(this.lblarrivee);
+            this.Controls.Add(this.lbldepart);
+            this.Controls.Add(this.lblsect);
             this.Name = "AjoutLiaison";
             this.Text = "AjoutLiaison";
             this.Load += new System.EventHandler(this.AjoutLiaison_Load);
@@ -145,14 +146,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox CbxDepart;
-        private System.Windows.Forms.ComboBox CbxArrive;
-        private System.Windows.Forms.TextBox TbxDist;
-        private System.Windows.Forms.ListBox LstSect;
+        private System.Windows.Forms.Label lblsect;
+        private System.Windows.Forms.Label lbldepart;
+        private System.Windows.Forms.Label lblarrivee;
+        private System.Windows.Forms.Label lbldistance;
+        private System.Windows.Forms.ComboBox cmbdepart;
+        private System.Windows.Forms.ComboBox cmbarrivee;
+        private System.Windows.Forms.TextBox tbxdist;
+        private System.Windows.Forms.ListBox lbxsect;
         private System.Windows.Forms.Button BtnAjout;
     }
 }

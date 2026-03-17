@@ -26,27 +26,31 @@ namespace Atlantik
             MySqlCommand maCde;
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             maCo = new MySqlConnection(CHAINECONNEXION);
-            NomPort = TbxAjoutPort.Text;
-            try
+            if(tbxajoutport.Text == "")
             {
-                maCo.Open();
-
-                requête = "INSERT INTO port(nom) VALUES (@port)";
-                maCde = new MySqlCommand(requête, maCo);
-                maCde.Parameters.AddWithValue("@port", NomPort);
-                int nb = maCde.ExecuteNonQuery();
-                MessageBox.Show("Nouveau Port Ajouté !");
-
-                
-                
+                MessageBox.Show("Veuillez donner le nom du nouveau port !");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                maCo.Close();
+                NomPort = tbxajoutport.Text;
+                try
+                {
+                    maCo.Open();
+
+                    requête = "INSERT INTO port(nom) VALUES (@port)";
+                    maCde = new MySqlCommand(requête, maCo);
+                    maCde.Parameters.AddWithValue("@port", NomPort);
+                    int nb = maCde.ExecuteNonQuery();
+                    MessageBox.Show("Nouveau Port Ajouté !");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    maCo.Close();
+                }
             }
         }
 
@@ -57,18 +61,35 @@ namespace Atlantik
 
         private void TbxAjoutPort_Validating(object sender, CancelEventArgs e)
         {
-            var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
-            var résultat = objetRegEx.Match(TbxAjoutPort.Text);
+            //var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
+            //var résultat = objetRegEx.Match(tbxajoutport.Text);
 
-            if (!résultat.Success)
+            //if (!résultat.Success)
+            //{
+            //    tbxajoutport.BackColor = Color.OrangeRed;
+            //    e.Cancel = true;
+            //}
+            //else
+            //{
+            //    tbxajoutport.BackColor = Color.LightGreen; 
+            //    e.Cancel = false;
+            //}
+        }
+
+        private void tbxajoutport_TextChanged(object sender, EventArgs e)
+        {
+            var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
+            var résultat = objetRegEx.Match(tbxajoutport.Text);
+
+            if (!résultat.Success || tbxajoutport.Text == null)
             {
-                TbxAjoutPort.BackColor = Color.OrangeRed;
-                e.Cancel = true;
+                tbxajoutport.BackColor = Color.OrangeRed;
+                btnAjoutPort.Enabled = false;
             }
             else
             {
-                TbxAjoutPort.BackColor = Color.LightGreen; 
-                e.Cancel = false;
+                tbxajoutport.BackColor = Color.LightGreen;
+                btnAjoutPort.Enabled = true;
             }
         }
     }

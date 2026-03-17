@@ -28,101 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LstsectAjTar = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Cbxlaision = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Cbxpériode = new System.Windows.Forms.ComboBox();
-            this.BtnAjout = new System.Windows.Forms.Button();
-            this.GbxTarif = new System.Windows.Forms.GroupBox();
+            this.lbxsect = new System.Windows.Forms.ListBox();
+            this.lblsecteur = new System.Windows.Forms.Label();
+            this.lblliaison = new System.Windows.Forms.Label();
+            this.cmblaision = new System.Windows.Forms.ComboBox();
+            this.lblperiode = new System.Windows.Forms.Label();
+            this.cmbpériode = new System.Windows.Forms.ComboBox();
+            this.btnajout = new System.Windows.Forms.Button();
+            this.gbxtarif = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
-            // LstsectAjTar
+            // lbxsect
             // 
-            this.LstsectAjTar.FormattingEnabled = true;
-            this.LstsectAjTar.Location = new System.Drawing.Point(11, 60);
-            this.LstsectAjTar.Name = "LstsectAjTar";
-            this.LstsectAjTar.Size = new System.Drawing.Size(120, 199);
-            this.LstsectAjTar.TabIndex = 0;
-            this.LstsectAjTar.SelectedIndexChanged += new System.EventHandler(this.LstsectAjTar_SelectedIndexChanged);
+            this.lbxsect.FormattingEnabled = true;
+            this.lbxsect.Location = new System.Drawing.Point(11, 60);
+            this.lbxsect.Name = "lbxsect";
+            this.lbxsect.Size = new System.Drawing.Size(120, 199);
+            this.lbxsect.TabIndex = 0;
+            this.lbxsect.SelectedIndexChanged += new System.EventHandler(this.LstsectAjTar_SelectedIndexChanged);
             // 
-            // label1
+            // lblsecteur
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Secteurs :";
+            this.lblsecteur.AutoSize = true;
+            this.lblsecteur.Location = new System.Drawing.Point(8, 44);
+            this.lblsecteur.Name = "lblsecteur";
+            this.lblsecteur.Size = new System.Drawing.Size(55, 13);
+            this.lblsecteur.TabIndex = 1;
+            this.lblsecteur.Text = "Secteurs :";
             // 
-            // label2
+            // lblliaison
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 272);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Liaison :";
+            this.lblliaison.AutoSize = true;
+            this.lblliaison.Location = new System.Drawing.Point(8, 272);
+            this.lblliaison.Name = "lblliaison";
+            this.lblliaison.Size = new System.Drawing.Size(46, 13);
+            this.lblliaison.TabIndex = 2;
+            this.lblliaison.Text = "Liaison :";
             // 
-            // Cbxlaision
+            // cmblaision
             // 
-            this.Cbxlaision.FormattingEnabled = true;
-            this.Cbxlaision.Location = new System.Drawing.Point(12, 288);
-            this.Cbxlaision.Name = "Cbxlaision";
-            this.Cbxlaision.Size = new System.Drawing.Size(121, 21);
-            this.Cbxlaision.TabIndex = 3;
+            this.cmblaision.FormattingEnabled = true;
+            this.cmblaision.Location = new System.Drawing.Point(12, 288);
+            this.cmblaision.Name = "cmblaision";
+            this.cmblaision.Size = new System.Drawing.Size(121, 21);
+            this.cmblaision.TabIndex = 3;
             // 
-            // label3
+            // lblperiode
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 346);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Période :";
+            this.lblperiode.AutoSize = true;
+            this.lblperiode.Location = new System.Drawing.Point(8, 346);
+            this.lblperiode.Name = "lblperiode";
+            this.lblperiode.Size = new System.Drawing.Size(49, 13);
+            this.lblperiode.TabIndex = 4;
+            this.lblperiode.Text = "Période :";
             // 
-            // Cbxpériode
+            // cmbpériode
             // 
-            this.Cbxpériode.FormattingEnabled = true;
-            this.Cbxpériode.Location = new System.Drawing.Point(75, 343);
-            this.Cbxpériode.Name = "Cbxpériode";
-            this.Cbxpériode.Size = new System.Drawing.Size(219, 21);
-            this.Cbxpériode.TabIndex = 5;
+            this.cmbpériode.FormattingEnabled = true;
+            this.cmbpériode.Location = new System.Drawing.Point(75, 343);
+            this.cmbpériode.Name = "cmbpériode";
+            this.cmbpériode.Size = new System.Drawing.Size(219, 21);
+            this.cmbpériode.TabIndex = 5;
             // 
-            // BtnAjout
+            // btnajout
             // 
-            this.BtnAjout.Location = new System.Drawing.Point(324, 341);
-            this.BtnAjout.Name = "BtnAjout";
-            this.BtnAjout.Size = new System.Drawing.Size(121, 23);
-            this.BtnAjout.TabIndex = 6;
-            this.BtnAjout.Text = "Ajouter";
-            this.BtnAjout.UseVisualStyleBackColor = true;
-            this.BtnAjout.Click += new System.EventHandler(this.BtnAjout_Click);
+            this.btnajout.Location = new System.Drawing.Point(324, 341);
+            this.btnajout.Name = "btnajout";
+            this.btnajout.Size = new System.Drawing.Size(121, 23);
+            this.btnajout.TabIndex = 6;
+            this.btnajout.Text = "Ajouter";
+            this.btnajout.UseVisualStyleBackColor = true;
+            this.btnajout.Click += new System.EventHandler(this.BtnAjout_Click);
             // 
-            // GbxTarif
+            // gbxtarif
             // 
-            this.GbxTarif.Location = new System.Drawing.Point(227, 44);
-            this.GbxTarif.Name = "GbxTarif";
-            this.GbxTarif.Size = new System.Drawing.Size(244, 265);
-            this.GbxTarif.TabIndex = 7;
-            this.GbxTarif.TabStop = false;
-            this.GbxTarif.Text = "Tarifs par Catégorie-Type";
-            this.GbxTarif.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.gbxtarif.Location = new System.Drawing.Point(227, 44);
+            this.gbxtarif.Name = "gbxtarif";
+            this.gbxtarif.Size = new System.Drawing.Size(244, 265);
+            this.gbxtarif.TabIndex = 7;
+            this.gbxtarif.TabStop = false;
+            this.gbxtarif.Text = "Tarifs par Catégorie-Type";
+            this.gbxtarif.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // AjoutTarifs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 450);
-            this.Controls.Add(this.GbxTarif);
-            this.Controls.Add(this.BtnAjout);
-            this.Controls.Add(this.Cbxpériode);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.Cbxlaision);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.LstsectAjTar);
+            this.Controls.Add(this.gbxtarif);
+            this.Controls.Add(this.btnajout);
+            this.Controls.Add(this.cmbpériode);
+            this.Controls.Add(this.lblperiode);
+            this.Controls.Add(this.cmblaision);
+            this.Controls.Add(this.lblliaison);
+            this.Controls.Add(this.lblsecteur);
+            this.Controls.Add(this.lbxsect);
             this.Name = "AjoutTarifs";
             this.Text = "AjoutTarifs";
             this.Load += new System.EventHandler(this.AjoutTarifs_Load);
@@ -133,13 +133,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox LstsectAjTar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox Cbxlaision;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox Cbxpériode;
-        private System.Windows.Forms.Button BtnAjout;
-        private System.Windows.Forms.GroupBox GbxTarif;
+        private System.Windows.Forms.ListBox lbxsect;
+        private System.Windows.Forms.Label lblsecteur;
+        private System.Windows.Forms.Label lblliaison;
+        private System.Windows.Forms.ComboBox cmblaision;
+        private System.Windows.Forms.Label lblperiode;
+        private System.Windows.Forms.ComboBox cmbpériode;
+        private System.Windows.Forms.Button btnajout;
+        private System.Windows.Forms.GroupBox gbxtarif;
     }
 }

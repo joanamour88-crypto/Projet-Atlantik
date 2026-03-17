@@ -40,8 +40,8 @@ namespace Atlantik
 
                     Port p = new Port(id, nom);
 
-                    CbxDepart.Items.Add(p);
-                    CbxArrive.Items.Add(p);
+                    cmbdepart.Items.Add(p);
+                    cmbarrivee.Items.Add(p);
                 }
                 jeuEnregistrements.Close();
 
@@ -58,7 +58,7 @@ namespace Atlantik
 
                     Secteur s = new Secteur(idsect, nomsect);
 
-                    LstSect.Items.Add(s);
+                    lbxsect.Items.Add(s);
                 }
                 jeuEnregistrementssect.Close();
             }
@@ -93,21 +93,21 @@ namespace Atlantik
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
-            if(LstSect.SelectedItem == null || CbxDepart.SelectedItem == null || CbxArrive.SelectedItem == null)
+            if(lbxsect.SelectedItem == null || cmbdepart.SelectedItem == null || cmbarrivee.SelectedItem == null || tbxdist.Text == "")
             {
-                MessageBox.Show("Veuillez sélectionner un secteur, un port de départ et un port d'arrivé !!");
+                MessageBox.Show("Veuillez renseigner toutes les données nécessaires !");
             }
             else
             {
-                Secteur sect = (Secteur)LstSect.SelectedItem;
-                Port dep = (Port)CbxDepart.SelectedItem;
-                Port arr = (Port)CbxArrive.SelectedItem;
+                Secteur sect = (Secteur)lbxsect.SelectedItem;
+                Port dep = (Port)cmbdepart.SelectedItem;
+                Port arr = (Port)cmbarrivee.SelectedItem;
                 int idSecteur = sect.GetNoSecteur();
                 int idDepart = dep.GetNoPort();
                 int idArrivé = dep.GetNoPort();
-                double dist = int.Parse(TbxDist.Text);
+                double dist = int.Parse(tbxdist.Text);
 
-                MessageBox.Show(TbxDist.Text.ToString());
+                //MessageBox.Show(tbxdist.Text.ToString());
 
                 try
                 {
@@ -149,18 +149,18 @@ namespace Atlantik
         private void TbxDist_Validating(object sender, CancelEventArgs e)
         {
             var objetRegEx = new Regex("^[0-9]*$");
-            var résultat = objetRegEx.Match(TbxDist.Text);
+            var résultat = objetRegEx.Match(tbxdist.Text);
 
-            if (!résultat.Success || TbxDist.Text == "")
+            if (!résultat.Success || tbxdist.Text == "")
             {
-                TbxDist.BackColor = Color.Red;
+                tbxdist.BackColor = Color.Red;
                 e.Cancel = true;
                 MessageBox.Show("Veuillez saisir un nombre pour la distance !!");
                 //ErrorProvider.SetError(TbxDist, "Saisir un nombre ! ");
             }
             else
             {
-                TbxDist.BackColor = Color.Green;
+                tbxdist.BackColor = Color.Green;
                 //ErrorProvider.Clear();
             }
         }
@@ -168,6 +168,23 @@ namespace Atlantik
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbxdist_TextChanged(object sender, EventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var résultat = objetRegEx.Match(tbxdist.Text);
+
+            if (!résultat.Success || tbxdist.Text == null)
+            {
+                tbxdist.BackColor = Color.OrangeRed;
+                BtnAjout.Enabled = false;
+            }
+            else
+            {
+                tbxdist.BackColor = Color.LightGreen;
+                BtnAjout.Enabled = true;
+            }
         }
     }
 }

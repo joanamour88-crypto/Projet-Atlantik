@@ -28,46 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnAjoutPort = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TbxAjoutPort = new System.Windows.Forms.TextBox();
+            this.btnAjoutPort = new System.Windows.Forms.Button();
+            this.lblnomport = new System.Windows.Forms.Label();
+            this.tbxajoutport = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // BtnAjoutPort
+            // btnAjoutPort
             // 
-            this.BtnAjoutPort.Location = new System.Drawing.Point(88, 71);
-            this.BtnAjoutPort.Name = "BtnAjoutPort";
-            this.BtnAjoutPort.Size = new System.Drawing.Size(75, 23);
-            this.BtnAjoutPort.TabIndex = 0;
-            this.BtnAjoutPort.Text = "Ajouter";
-            this.BtnAjoutPort.UseVisualStyleBackColor = true;
-            this.BtnAjoutPort.Click += new System.EventHandler(this.BtnAjoutPort_Click);
+            this.btnAjoutPort.Location = new System.Drawing.Point(88, 71);
+            this.btnAjoutPort.Name = "btnAjoutPort";
+            this.btnAjoutPort.Size = new System.Drawing.Size(75, 23);
+            this.btnAjoutPort.TabIndex = 0;
+            this.btnAjoutPort.Text = "Ajouter";
+            this.btnAjoutPort.UseVisualStyleBackColor = true;
+            this.btnAjoutPort.Click += new System.EventHandler(this.BtnAjoutPort_Click);
             // 
-            // label1
+            // lblnomport
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nom port :";
+            this.lblnomport.AutoSize = true;
+            this.lblnomport.Location = new System.Drawing.Point(12, 39);
+            this.lblnomport.Name = "lblnomport";
+            this.lblnomport.Size = new System.Drawing.Size(56, 13);
+            this.lblnomport.TabIndex = 1;
+            this.lblnomport.Text = "Nom port :";
             // 
-            // TbxAjoutPort
+            // tbxajoutport
             // 
-            this.TbxAjoutPort.Location = new System.Drawing.Point(74, 36);
-            this.TbxAjoutPort.Name = "TbxAjoutPort";
-            this.TbxAjoutPort.Size = new System.Drawing.Size(100, 20);
-            this.TbxAjoutPort.TabIndex = 2;
-            this.TbxAjoutPort.Validating += new System.ComponentModel.CancelEventHandler(this.TbxAjoutPort_Validating);
+            this.tbxajoutport.Location = new System.Drawing.Point(74, 36);
+            this.tbxajoutport.Name = "tbxajoutport";
+            this.tbxajoutport.Size = new System.Drawing.Size(100, 20);
+            this.tbxajoutport.TabIndex = 2;
+            this.tbxajoutport.TextChanged += new System.EventHandler(this.tbxajoutport_TextChanged);
+            this.tbxajoutport.Validating += new System.ComponentModel.CancelEventHandler(this.TbxAjoutPort_Validating);
             // 
             // AjoutPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(238, 168);
-            this.Controls.Add(this.TbxAjoutPort);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnAjoutPort);
+            this.Controls.Add(this.tbxajoutport);
+            this.Controls.Add(this.lblnomport);
+            this.Controls.Add(this.btnAjoutPort);
             this.Name = "AjoutPort";
             this.Text = "AjoutPort";
             this.Load += new System.EventHandler(this.AjoutPort_Load);
@@ -78,8 +79,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BtnAjoutPort;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TbxAjoutPort;
+        private System.Windows.Forms.Button btnAjoutPort;
+        private System.Windows.Forms.Label lblnomport;
+        private System.Windows.Forms.TextBox tbxajoutport;
     }
 }

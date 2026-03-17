@@ -43,7 +43,7 @@ namespace Atlantik
 
                     Secteur s = new Secteur(idsect, nomsect);
 
-                    LstsectAjTar.Items.Add(s);
+                    lbxsect.Items.Add(s);
                 }
                 jeuEnregistrementssect.Close();
             }
@@ -78,7 +78,7 @@ namespace Atlantik
                     lab = new Label();
                     lab.Text = letcat + notype.ToString() + "-" + libelle;
                     lab.Location = new Point(5, i * 25);
-                    GbxTarif.Controls.Add(lab);
+                    gbxtarif.Controls.Add(lab);
 
                     txt = new TextBox();
 
@@ -86,7 +86,7 @@ namespace Atlantik
                     txt.Tag = letcat + ";" + notype;
                     txt.Width = 100;
                     txt.TextChanged += tbxCategorie_TextChanged;
-                    GbxTarif.Controls.Add(txt);
+                    gbxtarif.Controls.Add(txt);
                     i = i + 1;
                 }
                 jeuEnregistrementslab.Close();
@@ -116,7 +116,7 @@ namespace Atlantik
                     string datedebut = jeuEnregistrementsper["datedebut"].ToString();
                     string datearrivee = jeuEnregistrementsper["datefin"].ToString();
                     Periode p = new Periode(noperiode, datedebut, datearrivee);
-                    Cbxpériode.Items.Add(p);
+                    cmbpériode.Items.Add(p);
                 }
                 jeuEnregistrementsper.Close();
             }
@@ -144,19 +144,19 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                int idSecteur = ((Secteur)LstsectAjTar.SelectedItem).GetNoSecteur();
+                int idSecteur = ((Secteur)lbxsect.SelectedItem).GetNoSecteur();
                 string requêteliai = "SELECT noliaison, p.NOM, po.NOM as \"pNOM\" FROM liaison l INNER JOIN port p ON (l.NOPORT_DEPART = p.NOPORT) INNER JOIN port po ON (l.NOPORT_ARRIVEE = po.NOPORT) WHERE nosecteur = @idsect ";
                 MySqlCommand maCdeliai = new MySqlCommand(requêteliai, maCo);
                 maCdeliai.Parameters.AddWithValue("@idsect", idSecteur);
                 MySqlDataReader jeuEnregistrementsliai = maCdeliai.ExecuteReader();
-                Cbxlaision.Items.Clear();
+                cmblaision.Items.Clear();
                 while (jeuEnregistrementsliai.Read())
                 {
                     int noliaison = Convert.ToInt32(jeuEnregistrementsliai["noliaison"]);
                     string nomportdep = jeuEnregistrementsliai["NOM"].ToString();
                     string nomportarr = jeuEnregistrementsliai["pNOM"].ToString();
                     Liaison l = new Liaison(noliaison, nomportdep, nomportarr);
-                    Cbxlaision.Items.Add(l);
+                    cmblaision.Items.Add(l);
                 }
                 jeuEnregistrementsliai.Close();
             }
@@ -179,13 +179,13 @@ namespace Atlantik
 
             try
             {
-                if(Cbxpériode.SelectedItem == null || Cbxlaision.SelectedItem == null || LstsectAjTar.SelectedItems == null)
+                if(cmbpériode.SelectedItem == null || cmblaision.SelectedItem == null || lbxsect.SelectedItems == null)
                 {
-                    MessageBox.Show("Veuillez sélectionner une période et une liaison !");
+                    MessageBox.Show("Veuillez renseigner toutes les données nécessaires !");
                 }
                 else
                 {
-                    foreach (Control c in GbxTarif.Controls)
+                    foreach (Control c in gbxtarif.Controls)
                     {
                         if (c is TextBox tbx)
                         {
@@ -196,13 +196,13 @@ namespace Atlantik
                             tab = (tbx.Tag).ToString();
                             tab.Split(';');
 
-                            Periode recupnoperiode = (Periode)Cbxpériode.SelectedItem;
+                            Periode recupnoperiode = (Periode)cmbpériode.SelectedItem;
 
                             string letcat = tab[0].ToString();
                             int notype = int.Parse(tab[2].ToString());
                             double tarif = int.Parse(tbx.Text);
 
-                            Liaison recupnoliaison = (Liaison)Cbxlaision.SelectedItem; ;
+                            Liaison recupnoliaison = (Liaison)cmblaision.SelectedItem; ;
 
                             int noperiode = recupnoperiode.GetNoPeriode();
                             int noliaison = recupnoliaison.GetNoLiaison();
@@ -219,7 +219,7 @@ namespace Atlantik
                             int nb = maCde.ExecuteNonQuery();
                         }
                     }
-                    MessageBox.Show("Nouveau Tarif ajouter !");
+                    MessageBox.Show("Nouveau Tarif ajouté !");
                 } 
             }
             catch (Exception ex)
@@ -241,12 +241,12 @@ namespace Atlantik
             if (!resultatTest.Success)
             {
                 tbx.BackColor = Color.OrangeRed;
-                BtnAjout.Enabled = false;
+                btnajout.Enabled = false;
             }
             else
             {
                 tbx.BackColor = Color.LightGreen;
-                BtnAjout.Enabled = true;
+                btnajout.Enabled = true;
             }
         }
     } 

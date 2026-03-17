@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,14 +32,14 @@ namespace Atlantik
                 Label lab;
                 TextBox txt;
                 int i = 1;
-                string requêtelab = "SELECT * FROM categorie";
-                MySqlCommand maCdelab = new MySqlCommand(requêtelab, maCo);
-                MySqlDataReader jeuEnregistrementslab = maCdelab.ExecuteReader();
+                string requête = "SELECT * FROM categorie";
+                MySqlCommand maCde = new MySqlCommand(requête, maCo);
+                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
 
-                while (jeuEnregistrementslab.Read())
+                while (jeuEnregistrements.Read())
                 {
-                    string letcat = jeuEnregistrementslab["lettrecategorie"].ToString();
-                    string libelle = jeuEnregistrementslab["libelle"].ToString();
+                    string letcat = jeuEnregistrements["lettrecategorie"].ToString();
+                    string libelle = jeuEnregistrements["libelle"].ToString();
 
                     lab = new Label();
                     lab.Text = letcat + " (" + libelle + ")";
@@ -49,10 +50,11 @@ namespace Atlantik
                     txt.Location = new Point(125, i * 25);
                     txt.Tag = letcat;
                     txt.Width = 75;
+                    txt.TextChanged += tbxCapaMax_TextChanged;
                     GbxCapMax.Controls.Add(txt);
                     i = i + 1;
                 }
-                jeuEnregistrementslab.Close();
+                jeuEnregistrements.Close();
             }
             catch (Exception ex)
             {
@@ -78,7 +80,7 @@ namespace Atlantik
                     string nombateau = jeuEnregistrementslab["nom"].ToString();
                     int nobateau = Convert.ToInt32(jeuEnregistrementslab["nobateau"]);
                     Bateau bat = new Bateau(nobateau, nombateau);
-                    Cbxnombateau.Items.Add(bat);
+                    cbxnombateau.Items.Add(bat);
                 }
                 jeuEnregistrementslab.Close();
             }
@@ -97,7 +99,7 @@ namespace Atlantik
 
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
-            Bateau b = ((Bateau)Cbxnombateau.SelectedItem);
+            Bateau b = ((Bateau)cbxnombateau.SelectedItem);
             int nobateau = b.GetNoBateau();
 
             try
@@ -148,42 +150,41 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                //MySqlCommand maCdeinsbateau;
-                //string nombateau = Cbxnombateau.Text;
-                //string requêteinsbateau = "INSERT INTO bateau(nom) VALUES (@nombateau)";
-                //maCdeinsbateau = new MySqlCommand(requêteinsbateau, maCo);
-                //maCdeinsbateau.Parameters.AddWithValue("@nombateau", nombateau);
-                //int nbinsbateau = maCdeinsbateau.ExecuteNonQuery();
-
-                //int nobateau = (int)maCdeinsbateau.LastInsertedId;
-                Bateau b = ((Bateau)Cbxnombateau.SelectedItem);
-                int nobateau = b.GetNoBateau();
-
-                foreach (Control c in GbxCapMax.Controls)
+                if(cbxnombateau.SelectedItem == null)
                 {
-                    if (c is TextBox tbx)
-                    {
-                        MySqlCommand maCde;
-                        TextBox txt = (TextBox)c;
-
-                        string tab;
-                        tab = (tbx.Tag).ToString();
-                        //tab.Split(';');
-
-                        string letcat = tab[0].ToString();
-                        int capamax = int.Parse(tbx.Text);
-
-                        string requête = "UPDATE contenir SET capacitemax = @capacitemax WHERE lettrecategorie = @letcat AND  nobateau = @nobateau";
-                        maCde = new MySqlCommand(requête, maCo);
-
-                        maCde.Parameters.AddWithValue("@letcat", letcat);
-                        maCde.Parameters.AddWithValue("@nobateau", nobateau);
-                        maCde.Parameters.AddWithValue("@capacitemax", capamax);
-
-                        int nb = maCde.ExecuteNonQuery();
-                    }
+                    MessageBox.Show("Veuillez renseigner toute les données nécessaire !");
                 }
-                MessageBox.Show("Donnée du bateau Modifier !");
+                else
+                {
+                    Bateau b = ((Bateau)cbxnombateau.SelectedItem);
+                    int nobateau = b.GetNoBateau();
+
+                    foreach (Control c in GbxCapMax.Controls)
+                    {
+                        if (c is TextBox tbx)
+                        {
+                            MySqlCommand maCde;
+                            TextBox txt = (TextBox)c;
+
+                            string tab;
+                            tab = (tbx.Tag).ToString();
+                            //tab.Split(';');
+
+                            string letcat = tab[0].ToString();
+                            int capamax = int.Parse(tbx.Text);
+
+                            string requête = "UPDATE contenir SET capacitemax = @capacitemax WHERE lettrecategorie = @letcat AND  nobateau = @nobateau";
+                            maCde = new MySqlCommand(requête, maCo);
+
+                            maCde.Parameters.AddWithValue("@letcat", letcat);
+                            maCde.Parameters.AddWithValue("@nobateau", nobateau);
+                            maCde.Parameters.AddWithValue("@capacitemax", capamax);
+
+                            int nb = maCde.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("Donnée du bateau Modifier !");
+                }
             }
             catch (Exception ex)
             {
@@ -192,6 +193,24 @@ namespace Atlantik
             finally
             {
                 maCo.Close();
+            }
+        }
+
+        private void tbxCapaMax_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tbx = (TextBox)sender;
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbx.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbx.BackColor = Color.OrangeRed;
+                btnmodifier.Enabled = false;
+            }
+            else
+            {
+                tbx.BackColor = Color.LightGreen;
+                btnmodifier.Enabled = true;
             }
         }
     }

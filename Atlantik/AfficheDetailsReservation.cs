@@ -27,17 +27,17 @@ namespace Atlantik
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
             maCo.Open();
 
-            Lvdetailreserv.Items.Clear();
-            Lvdetailreserv.Columns.Clear();
+            lvdetailreserv.Items.Clear();
+            lvdetailreserv.Columns.Clear();
 
-            Lvdetailreserv.View = View.Details;
-            Lvdetailreserv.GridLines = true;
-            Lvdetailreserv.FullRowSelect = true;
+            lvdetailreserv.View = View.Details;
+            lvdetailreserv.GridLines = true;
+            lvdetailreserv.FullRowSelect = true;
 
-            Lvdetailreserv.Columns.Add("N° Réservation", 100);
-            Lvdetailreserv.Columns.Add("Liaison", 100);
-            Lvdetailreserv.Columns.Add("n° Traversee", 100);
-            Lvdetailreserv.Columns.Add("Date départ", 100);
+            lvdetailreserv.Columns.Add("N° Réservation", 100);
+            lvdetailreserv.Columns.Add("Liaison", 100);
+            lvdetailreserv.Columns.Add("n° Traversee", 100);
+            lvdetailreserv.Columns.Add("Date départ", 100);
 
             try
             {
@@ -48,7 +48,7 @@ namespace Atlantik
                 {
                     string nom = jeuEnregistrements["nom"].ToString();
                     string prenom = jeuEnregistrements["prenom"].ToString();
-                    Cbxnomclient.Items.Add(nom + " " + prenom);
+                    cmbnomclient.Items.Add(nom + " " + prenom);
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace Atlantik
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
-            string nomprenom = Cbxnomclient.SelectedItem.ToString();
+            string nomprenom = cmbnomclient.SelectedItem.ToString();
             string[] nompren = nomprenom.Split(' ');
             string recupnom = nompren[0];
             string recupprenom = nompren[1];
@@ -152,7 +152,7 @@ namespace Atlantik
                             TabItem[3] = dateheuredepart;
                         }
                     }
-                    Lvdetailreserv.Items.Add(new ListViewItem(TabItem));
+                    lvdetailreserv.Items.Add(new ListViewItem(TabItem));
                 }
             }
             catch (Exception ex)
@@ -177,56 +177,61 @@ namespace Atlantik
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
 
             maCo.Open();
-            string noreservation = Lvdetailreserv.SelectedItems[0].SubItems[0].Text;
 
-            try
+            if(lvdetailreserv.SelectedItems.Count != 0 )
             {
-                Label libelle;
-                Label nbdepers;
-                int i = 1;
-                string requete = "SELECT * FROM enregistrer e INNER JOIN reservation r ON e.noreservation = r.NORESERVATION INNER JOIN type t ON e.LETTRECATEGORIE = t.LETTRECATEGORIE AND e.NOTYPE = t.NOTYPE WHERE r.noreservation = @noreservation";
-                MySqlCommand maCde = new MySqlCommand(requete, maCo);
-                maCde.Parameters.AddWithValue("@noreservation", noreservation);
-                MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
-                while (jeuEnregistrements.Read())
+                string noreservation = lvdetailreserv.SelectedItems[0].SubItems[0].Text;
+
+                try
                 {
-                    string libe = jeuEnregistrements["libelle"].ToString();
-                    int nbpers = Convert.ToInt32(jeuEnregistrements["quantitereservee"]);
+                    Label libelle;
+                    Label nbdepers;
+                    int i = 1;
+                    string requete = "SELECT * FROM enregistrer e INNER JOIN reservation r ON e.noreservation = r.NORESERVATION INNER JOIN type t ON e.LETTRECATEGORIE = t.LETTRECATEGORIE AND e.NOTYPE = t.NOTYPE WHERE r.noreservation = @noreservation";
+                    MySqlCommand maCde = new MySqlCommand(requete, maCo);
+                    maCde.Parameters.AddWithValue("@noreservation", noreservation);
+                    MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+                    while (jeuEnregistrements.Read())
+                    {
+                        string libe = jeuEnregistrements["libelle"].ToString();
+                        int nbpers = Convert.ToInt32(jeuEnregistrements["quantitereservee"]);
 
-                    libelle = new Label();
-                    libelle.Text = libe ;
-                    libelle.Location = new Point(5, i * 25);
-                    Gbxreservation.Controls.Add(libelle);
+                        libelle = new Label();
+                        libelle.Text = libe;
+                        libelle.Location = new Point(5, i * 25);
+                        gbxreservation.Controls.Add(libelle);
 
-                    nbdepers = new Label();
-                    nbdepers.Text = ":" + nbpers.ToString();
-                    nbdepers.Location = new Point(125, i * 25);
-                    Gbxreservation.Controls.Add(nbdepers);
-                    i= i + 1;
+                        nbdepers = new Label();
+                        nbdepers.Text = ":" + nbpers.ToString();
+                        nbdepers.Location = new Point(125, i * 25);
+                        gbxreservation.Controls.Add(nbdepers);
+                        i = i + 1;
+                    }
+                    Label label = new Label();
+                    Label montant = new Label();
+
+                    label.Text = "Montant total";
+                    label.Location = new Point(5, i * 25);
+                    gbxreservation.Controls.Add(label);
+
+                    string montantt = jeuEnregistrements["montanttotal"].ToString();
+
+                    montant = new Label();
+                    montant.Text = ":" + montantt.ToString() + "€";
+                    montant.Location = new Point(125, i * 25);
+                    gbxreservation.Controls.Add(montant);
+                    jeuEnregistrements.Close();
                 }
-                Label label = new Label();
-                Label montant = new Label();
-
-                label.Text = "Montant total";
-                label.Location = new Point(5, i * 25);
-                Gbxreservation.Controls.Add(label);
-
-                string montantt = jeuEnregistrements["montanttotal"].ToString();
-
-                montant = new Label();
-                montant.Text = ":" + montantt.ToString() + "€";
-                montant.Location = new Point(125, i * 25);
-                Gbxreservation.Controls.Add(montant);
-                jeuEnregistrements.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    maCo.Close();
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                maCo.Close();
-            }
+            
         }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
-            this.Titre = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unSecteurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,16 +46,6 @@
             this.aProposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Titre
-            // 
-            this.Titre.AutoSize = true;
-            this.Titre.Location = new System.Drawing.Point(437, 63);
-            this.Titre.Name = "Titre";
-            this.Titre.Size = new System.Drawing.Size(42, 13);
-            this.Titre.TabIndex = 0;
-            this.Titre.Text = "Atlantik";
-            this.Titre.Click += new System.EventHandler(this.Titre_Click);
             // 
             // menuStrip1
             // 
@@ -186,8 +175,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(998, 482);
-            this.Controls.Add(this.Titre);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Accueil";
@@ -201,8 +190,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label Titre;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;

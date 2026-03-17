@@ -27,19 +27,19 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                int idSecteur = ((Secteur)Lstsect.SelectedItem).GetNoSecteur();
+                int idSecteur = ((Secteur)lbxsecteurs.SelectedItem).GetNoSecteur();
                 string requêteliai = "SELECT noliaison, p.NOM, po.NOM as \"pNOM\" FROM liaison l INNER JOIN port p ON (l.NOPORT_DEPART = p.NOPORT) INNER JOIN port po ON (l.NOPORT_ARRIVEE = po.NOPORT) WHERE nosecteur = @idsect ";
                 MySqlCommand maCdeliai = new MySqlCommand(requêteliai, maCo);
                 maCdeliai.Parameters.AddWithValue("@idsect", idSecteur);
                 MySqlDataReader jeuEnregistrementsliai = maCdeliai.ExecuteReader();
-                Cbxliaison.Items.Clear();
+                cmbliaison.Items.Clear();
                 while (jeuEnregistrementsliai.Read())
                 {
                     int noliaison = Convert.ToInt32(jeuEnregistrementsliai["noliaison"]);
                     string nomportdep = jeuEnregistrementsliai["NOM"].ToString();
                     string nomportarr = jeuEnregistrementsliai["pNOM"].ToString();
                     Liaison l = new Liaison(noliaison, nomportdep, nomportarr);
-                    Cbxliaison.Items.Add(l);
+                    cmbliaison.Items.Add(l);
                 }
                 jeuEnregistrementsliai.Close();
             }
@@ -75,7 +75,7 @@ namespace Atlantik
 
                     Secteur s = new Secteur(idsect, nomsect);
 
-                    Lstsect.Items.Add(s);
+                    lbxsecteurs.Items.Add(s);
                 }
                 jeuEnregistrementssect.Close();
             }
@@ -102,7 +102,7 @@ namespace Atlantik
                     string nombateau = jeuEnregistrementslab["nom"].ToString();
                     int nobateau = Convert.ToInt32(jeuEnregistrementslab["nobateau"]);
                     Bateau bat = new Bateau(nobateau, nombateau);
-                    Cbxnombateau.Items.Add(bat);
+                    cmbnombateau.Items.Add(bat);
                 }
                 jeuEnregistrementslab.Close();
             }
@@ -125,27 +125,34 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                MySqlCommand maCde;
-                Liaison recupnoliaison = (Liaison)Cbxliaison.SelectedItem;
-                Bateau recupnobateau = (Bateau)Cbxnombateau.SelectedItem;
+                if(cmbliaison.SelectedItem == null || cmbnombateau.SelectedItem == null || lbxsecteurs.SelectedItem == null)
+                {
+                    MessageBox.Show("Veuillez renseigner toutes les données nécessaires !");
+                }
+                else
+                {
+                    MySqlCommand maCde;
+                    Liaison recupnoliaison = (Liaison)cmbliaison.SelectedItem;
+                    Bateau recupnobateau = (Bateau)cmbnombateau.SelectedItem;
 
-                int noliaison = recupnoliaison.GetNoLiaison();
-                int nobateau = recupnobateau.GetNoBateau();
+                    int noliaison = recupnoliaison.GetNoLiaison();
+                    int nobateau = recupnobateau.GetNoBateau();
 
-                DateTime datheurdepart = Dtpdepart.Value;
-                DateTime datheurarrivee = Dtparrivee.Value;
+                    DateTime datheurdepart = datedepart.Value;
+                    DateTime datheurarrivee = dateparrivee.Value;
 
-                string requête = "INSERT INTO traversee(noliaison, nobateau, dateheuredepart, dateheurearrivee) VALUES (@noliaison, @nobateau, @datheudep, @datheuarr)";
-                maCde = new MySqlCommand(requête, maCo);
+                    string requête = "INSERT INTO traversee(noliaison, nobateau, dateheuredepart, dateheurearrivee) VALUES (@noliaison, @nobateau, @datheudep, @datheuarr)";
+                    maCde = new MySqlCommand(requête, maCo);
 
-                maCde.Parameters.AddWithValue("@noliaison", noliaison);
-                maCde.Parameters.AddWithValue("@nobateau", nobateau);
-                maCde.Parameters.AddWithValue("@datheudep", datheurdepart);
-                maCde.Parameters.AddWithValue("@datheuarr", datheurarrivee);
+                    maCde.Parameters.AddWithValue("@noliaison", noliaison);
+                    maCde.Parameters.AddWithValue("@nobateau", nobateau);
+                    maCde.Parameters.AddWithValue("@datheudep", datheurdepart);
+                    maCde.Parameters.AddWithValue("@datheuarr", datheurarrivee);
 
-                int nb = maCde.ExecuteNonQuery();
+                    int nb = maCde.ExecuteNonQuery();
 
-                MessageBox.Show("Traversée ajouter !");
+                    MessageBox.Show("Traversée ajouter !");
+                }
             }
             catch (Exception ex)
             {
@@ -159,7 +166,7 @@ namespace Atlantik
 
         private void Dtpdepart_ValueChanged(object sender, EventArgs e)
         {
-            Dtparrivee.MinDate = Dtpdepart.Value;
+            dateparrivee.MinDate = datedepart.Value;
         }
     }
 }

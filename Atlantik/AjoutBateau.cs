@@ -43,14 +43,14 @@ namespace Atlantik
                     lab = new Label();
                     lab.Text = letcat + " (" + libelle + ")";
                     lab.Location = new Point(5, i * 25);
-                    GbxCapMax.Controls.Add(lab);
+                    gbxcapmax.Controls.Add(lab);
 
                     txt = new TextBox();
                     txt.Location = new Point(125, i * 25);
                     txt.Tag = letcat;
                     txt.Width = 75;
-                    txt.TextChanged += tbxCategorie_TextChanged;
-                    GbxCapMax.Controls.Add(txt);
+                    txt.TextChanged += tbxCapaMax_TextChanged;
+                    gbxcapmax.Controls.Add(txt);
                     i = i + 1;
                 }
                 jeuEnregistrementslab.Close();
@@ -74,40 +74,48 @@ namespace Atlantik
             {
                 maCo.Open();
 
-                MySqlCommand maCdeinsbateau;
-                string nombateau = Tbxnombateau.Text;
-                string requêteinsbateau = "INSERT INTO bateau(nom) VALUES (@nombateau)";
-                maCdeinsbateau = new MySqlCommand(requêteinsbateau, maCo);
-                maCdeinsbateau.Parameters.AddWithValue("@nombateau", nombateau);
-                int nbinsbateau = maCdeinsbateau.ExecuteNonQuery();
-
-                int nobateau = (int)maCdeinsbateau.LastInsertedId;
-               
-                foreach (Control c in GbxCapMax.Controls)
+                if(tbxnombateau.Text == "" || tbxnombateau.BackColor == Color.Red)
                 {
-                    if (c is TextBox tbx)
-                    {
-                        MySqlCommand maCde;
-                        TextBox txt = (TextBox)c;
-
-                        string tab;
-                        tab = (tbx.Tag).ToString();
-                        //tab.Split(';');
-
-                        string letcat = tab[0].ToString();
-                        int capamax = int.Parse(tbx.Text);
-
-                        string requête = "INSERT INTO contenir(lettrecategorie, nobateau, capacitemax) VALUES (@letcat, @nobateau, @capacitemax)";
-                        maCde = new MySqlCommand(requête, maCo);
-
-                        maCde.Parameters.AddWithValue("@letcat", letcat);
-                        maCde.Parameters.AddWithValue("@nobateau", nobateau);
-                        maCde.Parameters.AddWithValue("@capacitemax", capamax);
-
-                        int nb = maCde.ExecuteNonQuery();
-                    }
+                    MessageBox.Show("veuillez donner le nom du bateau !");
                 }
-                MessageBox.Show("Nouveau bateau ajouter !");
+                else
+                {
+                    MySqlCommand maCdeinsbateau;
+                    string nombateau = tbxnombateau.Text;
+                    string requêteinsbateau = "INSERT INTO bateau(nom) VALUES (@nombateau)";
+                    maCdeinsbateau = new MySqlCommand(requêteinsbateau, maCo);
+                    maCdeinsbateau.Parameters.AddWithValue("@nombateau", nombateau);
+                    int nbinsbateau = maCdeinsbateau.ExecuteNonQuery();
+
+                    int nobateau = (int)maCdeinsbateau.LastInsertedId;
+
+                    foreach (Control c in gbxcapmax.Controls)
+                    {
+                        if (c is TextBox tbx)
+                        {
+                            MySqlCommand maCde;
+                            TextBox txt = (TextBox)c;
+
+                            string tab;
+                            tab = (tbx.Tag).ToString();
+                            //tab.Split(';');
+
+                            string letcat = tab[0].ToString();
+                            int capamax = int.Parse(tbx.Text);
+
+                            string requête = "INSERT INTO contenir(lettrecategorie, nobateau, capacitemax) VALUES (@letcat, @nobateau, @capacitemax)";
+                            maCde = new MySqlCommand(requête, maCo);
+
+                            maCde.Parameters.AddWithValue("@letcat", letcat);
+                            maCde.Parameters.AddWithValue("@nobateau", nobateau);
+                            maCde.Parameters.AddWithValue("@capacitemax", capamax);
+
+                            int nb = maCde.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("Nouveau bateau ajouter !");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -118,7 +126,7 @@ namespace Atlantik
                 maCo.Close();
             }
         }
-        private void tbxCategorie_TextChanged(object sender, EventArgs e)
+        private void tbxCapaMax_TextChanged(object sender, EventArgs e)
         {
             TextBox tbx = (TextBox)sender;
             var objetRegEx = new Regex("^[0-9]*$");
@@ -127,12 +135,29 @@ namespace Atlantik
             if (!resultatTest.Success)
             {
                 tbx.BackColor = Color.OrangeRed;
-                BtnAjBateau.Enabled = false;
+                btnajbateau.Enabled = false;
             }
             else
             {
                 tbx.BackColor = Color.LightGreen;
-                BtnAjBateau.Enabled = true;
+                btnajbateau.Enabled = true;
+            }
+        }
+
+        private void tbxnombateau_TextChanged(object sender, EventArgs e)
+        {
+            var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
+            var résultat = objetRegEx.Match(tbxnombateau.Text);
+
+            if (!résultat.Success || tbxnombateau.Text == null)
+            {
+                tbxnombateau.BackColor = Color.OrangeRed;
+                btnajbateau.Enabled = false;
+            }
+            else
+            {
+                tbxnombateau.BackColor = Color.LightGreen;
+                btnajbateau.Enabled = true;
             }
         }
     }

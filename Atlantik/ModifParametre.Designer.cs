@@ -28,156 +28,160 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TbxMail = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Cbxenrpod = new System.Windows.Forms.CheckBox();
-            this.TbxIdentifiant = new System.Windows.Forms.TextBox();
-            this.TbxRang = new System.Windows.Forms.TextBox();
-            this.TbxSite = new System.Windows.Forms.TextBox();
-            this.TbxCleHMAC = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.gbxidpaybox = new System.Windows.Forms.GroupBox();
+            this.lblsite = new System.Windows.Forms.Label();
+            this.lblrang = new System.Windows.Forms.Label();
+            this.lblid = new System.Windows.Forms.Label();
+            this.lblclehmac = new System.Windows.Forms.Label();
+            this.tbxidentifiant = new System.Windows.Forms.TextBox();
+            this.tbxrang = new System.Windows.Forms.TextBox();
+            this.tbxsite = new System.Windows.Forms.TextBox();
+            this.tbxclehmac = new System.Windows.Forms.TextBox();
+            this.lblmailsite = new System.Windows.Forms.Label();
+            this.tbxmail = new System.Windows.Forms.TextBox();
+            this.btnmodifier = new System.Windows.Forms.Button();
+            this.cbxenrpod = new System.Windows.Forms.CheckBox();
+            this.gbxidpaybox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbxidpaybox
             // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.TbxIdentifiant);
-            this.groupBox1.Controls.Add(this.TbxRang);
-            this.groupBox1.Controls.Add(this.TbxSite);
-            this.groupBox1.Controls.Add(this.TbxCleHMAC);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 254);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Identifiants PayBox";
+            this.gbxidpaybox.Controls.Add(this.lblsite);
+            this.gbxidpaybox.Controls.Add(this.lblrang);
+            this.gbxidpaybox.Controls.Add(this.lblid);
+            this.gbxidpaybox.Controls.Add(this.lblclehmac);
+            this.gbxidpaybox.Controls.Add(this.tbxidentifiant);
+            this.gbxidpaybox.Controls.Add(this.tbxrang);
+            this.gbxidpaybox.Controls.Add(this.tbxsite);
+            this.gbxidpaybox.Controls.Add(this.tbxclehmac);
+            this.gbxidpaybox.Location = new System.Drawing.Point(12, 12);
+            this.gbxidpaybox.Name = "gbxidpaybox";
+            this.gbxidpaybox.Size = new System.Drawing.Size(284, 254);
+            this.gbxidpaybox.TabIndex = 0;
+            this.gbxidpaybox.TabStop = false;
+            this.gbxidpaybox.Text = "Identifiants PayBox";
             // 
-            // label1
+            // lblsite
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(93, 324);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mail site :";
+            this.lblsite.AutoSize = true;
+            this.lblsite.Location = new System.Drawing.Point(6, 41);
+            this.lblsite.Name = "lblsite";
+            this.lblsite.Size = new System.Drawing.Size(31, 13);
+            this.lblsite.TabIndex = 11;
+            this.lblsite.Text = "Site :";
+            this.lblsite.Click += new System.EventHandler(this.label5_Click);
             // 
-            // TbxMail
+            // lblrang
             // 
-            this.TbxMail.Location = new System.Drawing.Point(150, 321);
-            this.TbxMail.Name = "TbxMail";
-            this.TbxMail.Size = new System.Drawing.Size(146, 20);
-            this.TbxMail.TabIndex = 1;
+            this.lblrang.AutoSize = true;
+            this.lblrang.Location = new System.Drawing.Point(6, 67);
+            this.lblrang.Name = "lblrang";
+            this.lblrang.Size = new System.Drawing.Size(39, 13);
+            this.lblrang.TabIndex = 10;
+            this.lblrang.Text = "Rang :";
             // 
-            // button1
+            // lblid
             // 
-            this.button1.Location = new System.Drawing.Point(150, 362);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Modifier";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lblid.AutoSize = true;
+            this.lblid.Location = new System.Drawing.Point(6, 93);
+            this.lblid.Name = "lblid";
+            this.lblid.Size = new System.Drawing.Size(59, 13);
+            this.lblid.TabIndex = 9;
+            this.lblid.Text = "Identifiant :";
             // 
-            // Cbxenrpod
+            // lblclehmac
             // 
-            this.Cbxenrpod.AutoSize = true;
-            this.Cbxenrpod.Location = new System.Drawing.Point(204, 287);
-            this.Cbxenrpod.Name = "Cbxenrpod";
-            this.Cbxenrpod.Size = new System.Drawing.Size(92, 17);
-            this.Cbxenrpod.TabIndex = 3;
-            this.Cbxenrpod.Text = "En production";
-            this.Cbxenrpod.UseVisualStyleBackColor = true;
+            this.lblclehmac.AutoSize = true;
+            this.lblclehmac.Location = new System.Drawing.Point(6, 119);
+            this.lblclehmac.Name = "lblclehmac";
+            this.lblclehmac.Size = new System.Drawing.Size(62, 13);
+            this.lblclehmac.TabIndex = 8;
+            this.lblclehmac.Text = "Clé HMAC :";
             // 
-            // TbxIdentifiant
+            // tbxidentifiant
             // 
-            this.TbxIdentifiant.Location = new System.Drawing.Point(99, 90);
-            this.TbxIdentifiant.Name = "TbxIdentifiant";
-            this.TbxIdentifiant.Size = new System.Drawing.Size(100, 20);
-            this.TbxIdentifiant.TabIndex = 4;
+            this.tbxidentifiant.Location = new System.Drawing.Point(99, 90);
+            this.tbxidentifiant.Name = "tbxidentifiant";
+            this.tbxidentifiant.Size = new System.Drawing.Size(100, 20);
+            this.tbxidentifiant.TabIndex = 4;
+            this.tbxidentifiant.TextChanged += new System.EventHandler(this.tbxidentifiant_TextChanged);
             // 
-            // TbxRang
+            // tbxrang
             // 
-            this.TbxRang.Location = new System.Drawing.Point(99, 64);
-            this.TbxRang.Name = "TbxRang";
-            this.TbxRang.Size = new System.Drawing.Size(100, 20);
-            this.TbxRang.TabIndex = 5;
+            this.tbxrang.Location = new System.Drawing.Point(99, 64);
+            this.tbxrang.Name = "tbxrang";
+            this.tbxrang.Size = new System.Drawing.Size(100, 20);
+            this.tbxrang.TabIndex = 5;
+            this.tbxrang.TextChanged += new System.EventHandler(this.tbxrang_TextChanged);
             // 
-            // TbxSite
+            // tbxsite
             // 
-            this.TbxSite.Location = new System.Drawing.Point(99, 38);
-            this.TbxSite.Name = "TbxSite";
-            this.TbxSite.Size = new System.Drawing.Size(100, 20);
-            this.TbxSite.TabIndex = 6;
+            this.tbxsite.Location = new System.Drawing.Point(99, 38);
+            this.tbxsite.Name = "tbxsite";
+            this.tbxsite.Size = new System.Drawing.Size(100, 20);
+            this.tbxsite.TabIndex = 6;
+            this.tbxsite.TextChanged += new System.EventHandler(this.tbxsite_TextChanged);
+            this.tbxsite.Validating += new System.ComponentModel.CancelEventHandler(this.tbxsite_Validating);
             // 
-            // TbxCleHMAC
+            // tbxclehmac
             // 
-            this.TbxCleHMAC.Location = new System.Drawing.Point(99, 116);
-            this.TbxCleHMAC.Multiline = true;
-            this.TbxCleHMAC.Name = "TbxCleHMAC";
-            this.TbxCleHMAC.Size = new System.Drawing.Size(100, 107);
-            this.TbxCleHMAC.TabIndex = 7;
+            this.tbxclehmac.Location = new System.Drawing.Point(99, 116);
+            this.tbxclehmac.Multiline = true;
+            this.tbxclehmac.Name = "tbxclehmac";
+            this.tbxclehmac.Size = new System.Drawing.Size(100, 107);
+            this.tbxclehmac.TabIndex = 7;
             // 
-            // label2
+            // lblmailsite
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Clé HMAC :";
+            this.lblmailsite.AutoSize = true;
+            this.lblmailsite.Location = new System.Drawing.Point(93, 324);
+            this.lblmailsite.Name = "lblmailsite";
+            this.lblmailsite.Size = new System.Drawing.Size(51, 13);
+            this.lblmailsite.TabIndex = 0;
+            this.lblmailsite.Text = "Mail site :";
             // 
-            // label3
+            // tbxmail
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Identifiant :";
+            this.tbxmail.Location = new System.Drawing.Point(150, 321);
+            this.tbxmail.Name = "tbxmail";
+            this.tbxmail.Size = new System.Drawing.Size(146, 20);
+            this.tbxmail.TabIndex = 1;
             // 
-            // label4
+            // btnmodifier
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Rang :";
+            this.btnmodifier.Location = new System.Drawing.Point(150, 362);
+            this.btnmodifier.Name = "btnmodifier";
+            this.btnmodifier.Size = new System.Drawing.Size(146, 23);
+            this.btnmodifier.TabIndex = 2;
+            this.btnmodifier.Text = "Modifier";
+            this.btnmodifier.UseVisualStyleBackColor = true;
+            this.btnmodifier.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label5
+            // cbxenrpod
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 41);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Site :";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.cbxenrpod.AutoSize = true;
+            this.cbxenrpod.Location = new System.Drawing.Point(204, 287);
+            this.cbxenrpod.Name = "cbxenrpod";
+            this.cbxenrpod.Size = new System.Drawing.Size(92, 17);
+            this.cbxenrpod.TabIndex = 3;
+            this.cbxenrpod.Text = "En production";
+            this.cbxenrpod.UseVisualStyleBackColor = true;
             // 
             // ModifParametre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 450);
-            this.Controls.Add(this.Cbxenrpod);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TbxMail);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.cbxenrpod);
+            this.Controls.Add(this.btnmodifier);
+            this.Controls.Add(this.lblmailsite);
+            this.Controls.Add(this.tbxmail);
+            this.Controls.Add(this.gbxidpaybox);
             this.Name = "ModifParametre";
             this.Text = "ModifParametre";
             this.Load += new System.EventHandler(this.ModifParametre_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbxidpaybox.ResumeLayout(false);
+            this.gbxidpaybox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,18 +189,18 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TbxMail;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox Cbxenrpod;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TbxIdentifiant;
-        private System.Windows.Forms.TextBox TbxRang;
-        private System.Windows.Forms.TextBox TbxSite;
-        private System.Windows.Forms.TextBox TbxCleHMAC;
+        private System.Windows.Forms.GroupBox gbxidpaybox;
+        private System.Windows.Forms.Label lblmailsite;
+        private System.Windows.Forms.TextBox tbxmail;
+        private System.Windows.Forms.Button btnmodifier;
+        private System.Windows.Forms.CheckBox cbxenrpod;
+        private System.Windows.Forms.Label lblsite;
+        private System.Windows.Forms.Label lblrang;
+        private System.Windows.Forms.Label lblid;
+        private System.Windows.Forms.Label lblclehmac;
+        private System.Windows.Forms.TextBox tbxidentifiant;
+        private System.Windows.Forms.TextBox tbxrang;
+        private System.Windows.Forms.TextBox tbxsite;
+        private System.Windows.Forms.TextBox tbxclehmac;
     }
 }
