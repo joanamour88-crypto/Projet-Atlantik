@@ -100,11 +100,14 @@ namespace Atlantik
             else
             {
                 Secteur sect = (Secteur)lbxsect.SelectedItem;
-                Port dep = (Port)cmbdepart.SelectedItem;
-                Port arr = (Port)cmbarrivee.SelectedItem;
                 int idSecteur = sect.GetNoSecteur();
+
+                Port dep = (Port)cmbdepart.SelectedItem;
                 int idDepart = dep.GetNoPort();
-                int idArrivé = dep.GetNoPort();
+
+                Port arr = (Port)cmbarrivee.SelectedItem;
+                int idArrivé = arr.GetNoPort();
+
                 double dist = int.Parse(tbxdist.Text);
 
                 //MessageBox.Show(tbxdist.Text.ToString());

@@ -96,35 +96,30 @@ namespace Atlantik
 
         private void tbxrang_TextChanged(object sender, EventArgs e)
         {
-            var objetRegEx = new Regex("^[0-9]*$");
-            var resultatTest = objetRegEx.Match(tbxrang.Text);
-
-            if (!resultatTest.Success)
-            {
-                tbxrang.BackColor = Color.OrangeRed;
-            }
-            else
-            {
-                tbxrang.BackColor = Color.LightGreen;
-            }
         }
 
         private void tbxidentifiant_TextChanged(object sender, EventArgs e)
         {
-            var objetRegEx = new Regex("^[0-9]*$");
-            var resultatTest = objetRegEx.Match(tbxrang.Text);
-
-            if (!resultatTest.Success)
-            {
-                tbxrang.BackColor = Color.OrangeRed;
-            }
-            else
-            {
-                tbxrang.BackColor = Color.LightGreen;
-            }
         }
 
         private void tbxsite_Validating(object sender, CancelEventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbxsite.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxsite.BackColor = Color.OrangeRed;
+                e.Cancel = true;
+            }
+            else
+            {
+                tbxsite.BackColor = Color.LightGreen;
+                e.Cancel = false;
+            }
+        }
+
+        private void tbxrang_Validating(object sender, CancelEventArgs e)
         {
             var objetRegEx = new Regex("^[0-9]*$");
             var resultatTest = objetRegEx.Match(tbxrang.Text);
@@ -137,6 +132,57 @@ namespace Atlantik
             else
             {
                 tbxrang.BackColor = Color.LightGreen;
+                e.Cancel = false;
+            }
+        }
+
+        private void tbxidentifiant_Validating(object sender, CancelEventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9]*$");
+            var resultatTest = objetRegEx.Match(tbxidentifiant.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxidentifiant.BackColor = Color.OrangeRed;
+                e.Cancel = true;
+            }
+            else
+            {
+                tbxidentifiant.BackColor = Color.LightGreen;
+                e.Cancel = false;
+            }
+        }
+
+        private void tbxclehmac_Validating(object sender, CancelEventArgs e)
+        {
+            var objetRegEx = new Regex("^[0-9A-Z]*$");
+            var resultatTest = objetRegEx.Match(tbxclehmac.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxclehmac.BackColor = Color.OrangeRed;
+                e.Cancel = true;
+            }
+            else
+            {
+                tbxclehmac.BackColor = Color.LightGreen;
+                e.Cancel = false;
+            }
+        }
+
+        private void tbxmail_Validating(object sender, CancelEventArgs e)
+        {
+            var objetRegEx = new Regex("^[a-zA-Z.]+@[a-z]+[a-z.]*$");
+            var resultatTest = objetRegEx.Match(tbxmail.Text);
+
+            if (!resultatTest.Success)
+            {
+                tbxmail.BackColor = Color.OrangeRed;
+                e.Cancel = true;
+            }
+            else
+            {
+                tbxmail.BackColor = Color.LightGreen;
                 e.Cancel = false;
             }
         }

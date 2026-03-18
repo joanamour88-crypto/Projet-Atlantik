@@ -105,6 +105,7 @@
             this.tbxidentifiant.Size = new System.Drawing.Size(100, 20);
             this.tbxidentifiant.TabIndex = 4;
             this.tbxidentifiant.TextChanged += new System.EventHandler(this.tbxidentifiant_TextChanged);
+            this.tbxidentifiant.Validating += new System.ComponentModel.CancelEventHandler(this.tbxidentifiant_Validating);
             // 
             // tbxrang
             // 
@@ -113,6 +114,7 @@
             this.tbxrang.Size = new System.Drawing.Size(100, 20);
             this.tbxrang.TabIndex = 5;
             this.tbxrang.TextChanged += new System.EventHandler(this.tbxrang_TextChanged);
+            this.tbxrang.Validating += new System.ComponentModel.CancelEventHandler(this.tbxrang_Validating);
             // 
             // tbxsite
             // 
@@ -130,6 +132,7 @@
             this.tbxclehmac.Name = "tbxclehmac";
             this.tbxclehmac.Size = new System.Drawing.Size(100, 107);
             this.tbxclehmac.TabIndex = 7;
+            this.tbxclehmac.Validating += new System.ComponentModel.CancelEventHandler(this.tbxclehmac_Validating);
             // 
             // lblmailsite
             // 
@@ -146,6 +149,7 @@
             this.tbxmail.Name = "tbxmail";
             this.tbxmail.Size = new System.Drawing.Size(146, 20);
             this.tbxmail.TabIndex = 1;
+            this.tbxmail.Validating += new System.ComponentModel.CancelEventHandler(this.tbxmail_Validating);
             // 
             // btnmodifier
             // 
