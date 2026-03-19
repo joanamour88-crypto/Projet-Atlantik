@@ -26,7 +26,7 @@ namespace Atlantik
 
         public override string ToString()
         {
-            return portdep + "  -  " + portarr;
+            return noliaison + " - " + portdep + "  -  " + portarr;
         }
     }
 }

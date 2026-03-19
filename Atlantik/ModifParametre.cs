@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿  using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -172,7 +172,7 @@ namespace Atlantik
 
         private void tbxmail_Validating(object sender, CancelEventArgs e)
         {
-            var objetRegEx = new Regex("^[a-zA-Z.]+@[a-z]+[a-z.]*$");
+            var objetRegEx = new Regex(@"^[a-zA-Z.]+@[a-z]+\.[a-z]*$");
             var resultatTest = objetRegEx.Match(tbxmail.Text);
 
             if (!resultatTest.Success)

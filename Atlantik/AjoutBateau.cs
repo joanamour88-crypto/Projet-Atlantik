@@ -49,7 +49,7 @@ namespace Atlantik
                     txt.Location = new Point(125, i * 25);
                     txt.Tag = letcat;
                     txt.Width = 75;
-                    txt.TextChanged += tbxCapaMax_TextChanged;
+                    txt.TextChanged += tbxCapaMax_Validating;
                     gbxcapmax.Controls.Add(txt);
                     i = i + 1;
                 }
@@ -65,6 +65,38 @@ namespace Atlantik
             }
         }
 
+        private bool VerifTxtBox()
+        {
+            string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
+            MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
+
+            try
+            {
+                maCo.Open();
+                foreach (Control cont in gbxcapmax.Controls)
+                {
+                    if (cont is TextBox tbx)
+                    {
+                        if (cont.Text == "")
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                maCo.Close();
+            }
+        }
+
+
         private void BtnAjBateau_Click(object sender, EventArgs e)
         {
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
@@ -73,10 +105,9 @@ namespace Atlantik
             try
             {
                 maCo.Open();
-
-                if(tbxnombateau.Text == "" || tbxnombateau.BackColor == Color.Red)
+                if(tbxnombateau.Text == "" || tbxnombateau.BackColor == Color.Red || VerifTxtBox() == true)
                 {
-                    MessageBox.Show("veuillez donner le nom du bateau !");
+                    MessageBox.Show("veuillez donner toutes les informations nécessaires !");
                 }
                 else
                 {
@@ -113,7 +144,7 @@ namespace Atlantik
                             int nb = maCde.ExecuteNonQuery();
                         }
                     }
-                    MessageBox.Show("Nouveau bateau ajouter !");
+                    MessageBox.Show("Nouveau bateau ajouté !");
                 }
                 
             }
@@ -126,7 +157,7 @@ namespace Atlantik
                 maCo.Close();
             }
         }
-        private void tbxCapaMax_TextChanged(object sender, EventArgs e)
+        private void tbxCapaMax_Validating(object sender, EventArgs e)
         {
             TextBox tbx = (TextBox)sender;
             var objetRegEx = new Regex("^[0-9]*$");
@@ -136,6 +167,7 @@ namespace Atlantik
             {
                 tbx.BackColor = Color.OrangeRed;
                 btnajbateau.Enabled = false;
+                //e.Cancel = true;
             }
             else
             {
@@ -159,6 +191,10 @@ namespace Atlantik
                 tbxnombateau.BackColor = Color.LightGreen;
                 btnajbateau.Enabled = true;
             }
+        }
+
+        private void gbxcapmax_Validating(object sender, CancelEventArgs e)
+        {
         }
     }
 }

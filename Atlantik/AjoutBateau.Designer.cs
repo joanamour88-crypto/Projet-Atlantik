@@ -59,6 +59,7 @@
             this.gbxcapmax.TabIndex = 2;
             this.gbxcapmax.TabStop = false;
             this.gbxcapmax.Text = "Capacité Maximales";
+            this.gbxcapmax.Validating += new System.ComponentModel.CancelEventHandler(this.gbxcapmax_Validating);
             // 
             // btnajbateau
             // 

@@ -118,7 +118,7 @@ namespace Atlantik
 
                     if (dep == arr)
                     {
-                        MessageBox.Show("C'est le même départ et arriver, change ça vite mon Grand !!");
+                        MessageBox.Show("Le port de départ et d'arriver sont similaire, veuillez changer cela !");
                     }
                     else
                     {
@@ -159,12 +159,10 @@ namespace Atlantik
                 tbxdist.BackColor = Color.Red;
                 e.Cancel = true;
                 MessageBox.Show("Veuillez saisir un nombre pour la distance !!");
-                //ErrorProvider.SetError(TbxDist, "Saisir un nombre ! ");
             }
             else
             {
                 tbxdist.BackColor = Color.Green;
-                //ErrorProvider.Clear();
             }
         }
 
@@ -175,19 +173,19 @@ namespace Atlantik
 
         private void tbxdist_TextChanged(object sender, EventArgs e)
         {
-            var objetRegEx = new Regex("^[0-9]*$");
-            var résultat = objetRegEx.Match(tbxdist.Text);
+            //var objetRegEx = new Regex("^[0-9]*$");
+            //var résultat = objetRegEx.Match(tbxdist.Text);
 
-            if (!résultat.Success || tbxdist.Text == null)
-            {
-                tbxdist.BackColor = Color.OrangeRed;
-                BtnAjout.Enabled = false;
-            }
-            else
-            {
-                tbxdist.BackColor = Color.LightGreen;
-                BtnAjout.Enabled = true;
-            }
+            //if (!résultat.Success || tbxdist.Text == null)
+            //{
+            //    tbxdist.BackColor = Color.OrangeRed;
+            //    BtnAjout.Enabled = false;
+            //}
+            //else
+            //{
+            //    tbxdist.BackColor = Color.LightGreen;
+            //    BtnAjout.Enabled = true;
+            //}
         }
     }
 }

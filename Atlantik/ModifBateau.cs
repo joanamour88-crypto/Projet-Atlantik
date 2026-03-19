@@ -96,12 +96,10 @@ namespace Atlantik
 
         private void Cbxnombateau_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             string CHAINECONNEXION = "Server=127.0.0.1;Port=3306;Database=atlantik;Uid=root;";
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
             Bateau b = ((Bateau)cbxnombateau.SelectedItem);
             int nobateau = b.GetNoBateau();
-
             try
             {
                 maCo.Open();
@@ -152,7 +150,7 @@ namespace Atlantik
 
                 if(cbxnombateau.SelectedItem == null)
                 {
-                    MessageBox.Show("Veuillez renseigner toute les données nécessaire !");
+                    MessageBox.Show("Veuillez renseigner toutes les données nécessaires !");
                 }
                 else
                 {
@@ -183,7 +181,7 @@ namespace Atlantik
                             int nb = maCde.ExecuteNonQuery();
                         }
                     }
-                    MessageBox.Show("Donnée du bateau Modifier !");
+                    MessageBox.Show("Donnée du bateau Modifié !");
                 }
             }
             catch (Exception ex)

@@ -186,8 +186,6 @@ namespace Atlantik
 
                 while (jeuEnregistrementssect.Read())
                 {
-                    //MessageBox.Show("ici c'est ok 1 !");
-
                     int idsect = Convert.ToInt32(jeuEnregistrementssect["nosecteur"]);
                     string nomsect = jeuEnregistrementssect["nom"].ToString();
 
@@ -228,8 +226,6 @@ namespace Atlantik
                 cmbliaison.Items.Clear();
                 while (jeuEnregistrementsliai.Read())
                 {
-                    //MessageBox.Show("ici c'est ok 2 !");
-
                     int noliaison = Convert.ToInt32(jeuEnregistrementsliai["noliaison"]);
                     string nomportdep = jeuEnregistrementsliai["NOM"].ToString();
                     string nomportarr = jeuEnregistrementsliai["pNOM"].ToString();
@@ -294,7 +290,6 @@ namespace Atlantik
 
                     while (jeuEnregistrements.Read())
                     {
-                        //MessageBox.Show("ici c'est ok 3 !");
                         string lettreCategorie = (string)jeuEnregistrements["lettrecategorie"];
                         string libelle = (string)jeuEnregistrements["libelle"];
                         Categories cat = new Categories(lettreCategorie, libelle);
@@ -378,9 +373,9 @@ namespace Atlantik
                             TabItem[1] = jeuEnregistrements["HEURE"].ToString();
                             TabItem[2] = jeuEnregistrements["NOM"].ToString();
                             int compteur = 3;
-                            foreach (LettreCategorie lstcate in LetCat)
+                            foreach (Categories lstcate in LesCategories)
                             {
-                                TabItem[compteur] = (GetCapaciteMaximale(notrav, lstcate.ToString()) - GetQuantiteEnregistree(notrav, lstcate.ToString())).ToString();
+                                TabItem[compteur] = (GetCapaciteMaximale(notrav, lstcate.getLettreCategorie()) - GetQuantiteEnregistree(notrav, lstcate.getLettreCategorie())).ToString();
                                 compteur++;
                             }
                             break;

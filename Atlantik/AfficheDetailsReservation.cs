@@ -27,6 +27,8 @@ namespace Atlantik
             MySqlConnection maCo = new MySqlConnection(CHAINECONNEXION);
             maCo.Open();
 
+            List<int> Noliaison = new List<int>();  
+
             lvdetailreserv.Items.Clear();
             lvdetailreserv.Columns.Clear();
 
@@ -59,6 +61,26 @@ namespace Atlantik
             {
                 maCo.Close();
             }
+
+            //try
+            //{
+            //    string requete = "SELECT noliaison FROM reservation";
+            //    MySqlCommand maCde = new MySqlCommand(requete, maCo);
+            //    MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+            //    while (jeuEnregistrements.Read())
+            //    {
+            //        int liai = Convert.ToInt32(jeuEnregistrements["noliaison"]);
+            //        Noliaison.Add(liai);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    maCo.Close();
+            //}
 
         }
 
@@ -102,7 +124,6 @@ namespace Atlantik
                 maCo.Close();
             }
 
-
             //// recuperation du no client ////////////////////////////////////////////
             try
             {
@@ -126,7 +147,7 @@ namespace Atlantik
             {
                 maCo.Close();
             }
-            
+            /// affichage noreservation, notraversee, dateheuredepart /////
             try
             {
                 maCo.Open();
@@ -139,10 +160,10 @@ namespace Atlantik
                     var TabItem = new string[4];
                     while (jeuEnregistrements2.Read())
                     {
-                        foreach (string l in nomliaison)
+                        foreach (string li in nomliaison)
                         {
                             int noreservation = Convert.ToInt32(jeuEnregistrements2["noreservation"]);
-                            string noliaison = l;
+                            string noliaison = li;
                             int notraversee = Convert.ToInt32(jeuEnregistrements2["notraversee"]);
                             string dateheuredepart = jeuEnregistrements2["dateheuredepart"].ToString();
 
@@ -150,6 +171,8 @@ namespace Atlantik
                             TabItem[1] = noliaison.ToString();
                             TabItem[2] = notraversee.ToString();
                             TabItem[3] = dateheuredepart;
+
+                            //lvdetailreserv.Items.Add(new ListViewItem(TabItem));
                         }
                     }
                     lvdetailreserv.Items.Add(new ListViewItem(TabItem));
@@ -191,6 +214,7 @@ namespace Atlantik
                     MySqlCommand maCde = new MySqlCommand(requete, maCo);
                     maCde.Parameters.AddWithValue("@noreservation", noreservation);
                     MySqlDataReader jeuEnregistrements = maCde.ExecuteReader();
+                    gbxreservation.Controls.Clear();
                     while (jeuEnregistrements.Read())
                     {
                         string libe = jeuEnregistrements["libelle"].ToString();

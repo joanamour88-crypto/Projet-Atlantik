@@ -44,7 +44,7 @@ namespace Atlantik
                     maCde = new MySqlCommand(requête, maCo);
                     maCde.Parameters.AddWithValue("@Sect", nomsect);
                     int nb = maCde.ExecuteNonQuery();
-                    MessageBox.Show("Nouveau secteur Ajouter !");
+                    MessageBox.Show("Nouveau secteur Ajouté !");
 
                 }
                 catch (Exception ex)
@@ -67,36 +67,36 @@ namespace Atlantik
         private void Tbxnomsect_Validating(object sender, CancelEventArgs e)
         {
 
-            //var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
-            //var résultat = objetRegEx.Match(tbxnomsect.Text);
-
-            //if (!résultat.Success || tbxnomsect.Text == null)
-            //{
-            //    tbxnomsect.BackColor = Color.OrangeRed;
-            //    e.Cancel = true;
-            //}
-            //else
-            //{
-            //    tbxnomsect.BackColor = Color.LightGreen;
-            //    e.Cancel = false;
-            //}
-        }
-
-        private void tbxnomsect_TextChanged(object sender, EventArgs e)
-        {
             var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
             var résultat = objetRegEx.Match(tbxnomsect.Text);
 
             if (!résultat.Success || tbxnomsect.Text == null)
             {
                 tbxnomsect.BackColor = Color.OrangeRed;
-                btnajoutsect.Enabled = false;
+                e.Cancel = true;
             }
             else
             {
                 tbxnomsect.BackColor = Color.LightGreen;
-                btnajoutsect.Enabled = true;
+                e.Cancel = false;
             }
+        }
+
+        private void tbxnomsect_TextChanged(object sender, EventArgs e)
+        {
+            //var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
+            //var résultat = objetRegEx.Match(tbxnomsect.Text);
+
+            //if (!résultat.Success || tbxnomsect.Text == null)
+            //{
+            //    tbxnomsect.BackColor = Color.OrangeRed;
+            //    btnajoutsect.Enabled = false;
+            //}
+            //else
+            //{
+            //    tbxnomsect.BackColor = Color.LightGreen;
+            //    btnajoutsect.Enabled = true;
+            //}
         }
     }
 }

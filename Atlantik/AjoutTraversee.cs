@@ -151,7 +151,7 @@ namespace Atlantik
 
                     int nb = maCde.ExecuteNonQuery();
 
-                    MessageBox.Show("Traversée ajouter !");
+                    MessageBox.Show("Traversée ajouté !");
                 }
             }
             catch (Exception ex)

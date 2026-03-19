@@ -61,36 +61,36 @@ namespace Atlantik
 
         private void TbxAjoutPort_Validating(object sender, CancelEventArgs e)
         {
-            //var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
-            //var résultat = objetRegEx.Match(tbxajoutport.Text);
-
-            //if (!résultat.Success)
-            //{
-            //    tbxajoutport.BackColor = Color.OrangeRed;
-            //    e.Cancel = true;
-            //}
-            //else
-            //{
-            //    tbxajoutport.BackColor = Color.LightGreen; 
-            //    e.Cancel = false;
-            //}
-        }
-
-        private void tbxajoutport_TextChanged(object sender, EventArgs e)
-        {
             var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
             var résultat = objetRegEx.Match(tbxajoutport.Text);
 
-            if (!résultat.Success || tbxajoutport.Text == null)
+            if (!résultat.Success)
             {
                 tbxajoutport.BackColor = Color.OrangeRed;
-                btnAjoutPort.Enabled = false;
+                e.Cancel = true;
             }
             else
             {
                 tbxajoutport.BackColor = Color.LightGreen;
-                btnAjoutPort.Enabled = true;
+                e.Cancel = false;
             }
+        }
+
+        private void tbxajoutport_TextChanged(object sender, EventArgs e)
+        {
+            //var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
+            //var résultat = objetRegEx.Match(tbxajoutport.Text);
+
+            //if (!résultat.Success || tbxajoutport.Text == null)
+            //{
+            //    tbxajoutport.BackColor = Color.OrangeRed;
+            //    btnAjoutPort.Enabled = false;
+            //}
+            //else
+            //{
+            //    tbxajoutport.BackColor = Color.LightGreen;
+            //    btnAjoutPort.Enabled = true;
+            //}
         }
     }
 }
