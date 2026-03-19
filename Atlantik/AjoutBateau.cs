@@ -49,7 +49,7 @@ namespace Atlantik
                     txt.Location = new Point(125, i * 25);
                     txt.Tag = letcat;
                     txt.Width = 75;
-                    txt.TextChanged += tbxCapaMax_Validating;
+                    //txt.TextChanged += tbxCapaMax_Validating;
                     gbxcapmax.Controls.Add(txt);
                     i = i + 1;
                 }
@@ -105,7 +105,7 @@ namespace Atlantik
             try
             {
                 maCo.Open();
-                if(tbxnombateau.Text == "" || tbxnombateau.BackColor == Color.Red || VerifTxtBox() == true)
+                if(tbxnombateau.Text == "" || VerifTxtBox() == true)
                 {
                     MessageBox.Show("veuillez donner toutes les informations nécessaires !");
                 }
@@ -157,26 +157,40 @@ namespace Atlantik
                 maCo.Close();
             }
         }
-        private void tbxCapaMax_Validating(object sender, EventArgs e)
+        private void tbxCapaMax_Validating(object sender, CancelEventArgs e)
         {
-            TextBox tbx = (TextBox)sender;
-            var objetRegEx = new Regex("^[0-9]*$");
-            var resultatTest = objetRegEx.Match(tbx.Text);
+            //TextBox tbx = (TextBox)sender;
+            //var objetRegEx = new Regex("^[0-9]*$");
+            //var resultatTest = objetRegEx.Match(tbx.Text);
 
-            if (!resultatTest.Success)
-            {
-                tbx.BackColor = Color.OrangeRed;
-                btnajbateau.Enabled = false;
-                //e.Cancel = true;
-            }
-            else
-            {
-                tbx.BackColor = Color.LightGreen;
-                btnajbateau.Enabled = true;
-            }
+            //foreach (Control cont in gbxcapmax.Controls)
+            //{
+            //    if (cont is TextBox tbx2)
+            //    {
+            //        if (!resultatTest.Success)
+            //        {
+            //            tbx.BackColor = Color.OrangeRed;
+            //            btnajbateau.Enabled = false;
+            //            e.Cancel = true;
+            //        }
+            //        else
+            //        {
+            //            tbx.BackColor = Color.LightGreen;
+            //            btnajbateau.Enabled = true;
+            //        }
+            //    }
+            //}
         }
 
         private void tbxnombateau_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void gbxcapmax_Validating(object sender, CancelEventArgs e)
+        {
+        }
+
+        private void tbxnombateau_Validating(object sender, CancelEventArgs e)
         {
             var objetRegEx = new Regex("^[a-zA-Zéèêëçàâôù ûïî]*$");
             var résultat = objetRegEx.Match(tbxnombateau.Text);
@@ -184,17 +198,13 @@ namespace Atlantik
             if (!résultat.Success || tbxnombateau.Text == null)
             {
                 tbxnombateau.BackColor = Color.OrangeRed;
-                btnajbateau.Enabled = false;
+                e.Cancel = true;
             }
             else
             {
                 tbxnombateau.BackColor = Color.LightGreen;
-                btnajbateau.Enabled = true;
+                e.Cancel = false;
             }
-        }
-
-        private void gbxcapmax_Validating(object sender, CancelEventArgs e)
-        {
         }
     }
 }

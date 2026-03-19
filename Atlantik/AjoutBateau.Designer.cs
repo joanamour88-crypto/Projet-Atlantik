@@ -50,6 +50,7 @@
             this.tbxnombateau.Size = new System.Drawing.Size(100, 20);
             this.tbxnombateau.TabIndex = 1;
             this.tbxnombateau.TextChanged += new System.EventHandler(this.tbxnombateau_TextChanged);
+            this.tbxnombateau.Validating += new System.ComponentModel.CancelEventHandler(this.tbxnombateau_Validating);
             // 
             // gbxcapmax
             // 

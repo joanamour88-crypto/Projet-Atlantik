@@ -24,9 +24,14 @@ namespace Atlantik
             return noliaison;
         }
 
+        public string Getliaison()
+        {
+            return portdep + "  -  " + portarr;
+        }
+
         public override string ToString()
         {
-            return noliaison + " - " + portdep + "  -  " + portarr;
+            return portdep + "  -  " + portarr;
         }
     }
 }

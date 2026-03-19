@@ -95,7 +95,7 @@ namespace Atlantik
             string recupprenom = nompren[1];
 
             List<int> nocli = new List<int>();
-            List<string> nomliaison = new List<string>();
+            List<Liaison> nomliaison = new List<Liaison>();
             //// recuperation de la liaison /////////////////
             try
             {
@@ -106,12 +106,11 @@ namespace Atlantik
                 MySqlDataReader jeuEnregistrementsliai = maCdeliai.ExecuteReader();
                 while (jeuEnregistrementsliai.Read())
                 {
-
                     int noliaison = Convert.ToInt32(jeuEnregistrementsliai["noliaison"]);
                     string nomportdep = jeuEnregistrementsliai["NOM"].ToString();
                     string nomportarr = jeuEnregistrementsliai["pNOM"].ToString();
                     Liaison l = new Liaison(noliaison, nomportdep, nomportarr);
-                    nomliaison.Add(l.ToString());
+                    nomliaison.Add(l);
                 }
                 jeuEnregistrementsliai.Close();
             }
@@ -153,29 +152,32 @@ namespace Atlantik
                 maCo.Open();
                 foreach (int idclient in nocli)
                 {
-                    string requete2 = "SELECT noreservation, t.notraversee, t.dateheuredepart FROM reservation r INNER JOIN traversee t ON(r.NOTRAVERSEE = t.NOTRAVERSEE) INNER JOIN liaison l ON(t.NOLIAISON = l.NOLIAISON) WHERE noclient = @idclient";
+                    string requete2 = "SELECT noreservation, l.noliaison, t.notraversee, t.dateheuredepart FROM reservation r INNER JOIN traversee t ON(r.NOTRAVERSEE = t.NOTRAVERSEE) INNER JOIN liaison l ON(t.NOLIAISON = l.NOLIAISON) WHERE noclient = @idclient";
                     MySqlCommand maCde2 = new MySqlCommand(requete2, maCo);
                     maCde2.Parameters.AddWithValue("@idclient", idclient);
                     MySqlDataReader jeuEnregistrements2 = maCde2.ExecuteReader();
                     var TabItem = new string[4];
                     while (jeuEnregistrements2.Read())
                     {
-                        foreach (string li in nomliaison)
+                        foreach (Liaison l in nomliaison)
                         {
-                            int noreservation = Convert.ToInt32(jeuEnregistrements2["noreservation"]);
-                            string noliaison = li;
-                            int notraversee = Convert.ToInt32(jeuEnregistrements2["notraversee"]);
-                            string dateheuredepart = jeuEnregistrements2["dateheuredepart"].ToString();
+                            if (l.GetNoLiaison() == Convert.ToInt32(jeuEnregistrements2["noliaison"]))
+                            {
+                                int noreservation = Convert.ToInt32(jeuEnregistrements2["noreservation"]);
+                                string noliaison = l.Getliaison();
+                                int notraversee = Convert.ToInt32(jeuEnregistrements2["notraversee"]);
+                                string dateheuredepart = jeuEnregistrements2["dateheuredepart"].ToString();
 
-                            TabItem[0] = noreservation.ToString();
-                            TabItem[1] = noliaison.ToString();
-                            TabItem[2] = notraversee.ToString();
-                            TabItem[3] = dateheuredepart;
-
-                            //lvdetailreserv.Items.Add(new ListViewItem(TabItem));
+                                TabItem[0] = noreservation.ToString();
+                                TabItem[1] = noliaison.ToString();
+                                TabItem[2] = notraversee.ToString();
+                                TabItem[3] = dateheuredepart;
+                                lvdetailreserv.Items.Add(new ListViewItem(TabItem));
+                            }
                         }
+                        //lvdetailreserv.Items.Add(new ListViewItem(TabItem));
                     }
-                    lvdetailreserv.Items.Add(new ListViewItem(TabItem));
+                    //lvdetailreserv.Items.Add(new ListViewItem(TabItem));
                 }
             }
             catch (Exception ex)
@@ -203,7 +205,7 @@ namespace Atlantik
 
             if(lvdetailreserv.SelectedItems.Count != 0 )
             {
-                string noreservation = lvdetailreserv.SelectedItems[0].SubItems[0].Text;
+                string noreservation = lvdetailreserv.SelectedItems[0].Text;
 
                 try
                 {
